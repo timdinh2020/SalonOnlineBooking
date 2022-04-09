@@ -26,6 +26,31 @@ namespace TestApp
             var accounts = mongodb.GetCollection<Account>("accounts");
 
             var owner = accounts.Find(a => a.role == "owner").ToList();
+            var myAccount = accounts.Find(a => a.username == "tdinh123").ToList();
+
+            // test insert an account
+            /*
+            var newAccount = new Account
+            {
+                first_name = "a",
+                last_name = "a",
+                role = "a",
+                email = "a",
+                username = "a",
+                password = "a",
+                avail_days = "a",
+            };
+            accounts.InsertOne(newAccount);
+            */
+
+            // test update password
+            /*
+            var filter = Builders<Account>.Filter.Eq("username", "tdinh123");
+            var update = Builders<Account>.Update.Set("password", "temp123");
+            accounts.UpdateOne(filter, update);
+            var myAccount2 = accounts.Find(a => a.username == "tdinh123").ToList();
+            */
+
             /**************************
              * Database testing END
              */
