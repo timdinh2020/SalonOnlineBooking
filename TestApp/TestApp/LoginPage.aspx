@@ -34,7 +34,7 @@
         <br>
         <asp:Button runat="server" onclick="loginClick" id ="signInBtn" class="btn btn-primary" Text="Sign In"/>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#accountModal">Sign Up</button>
+        <asp:Button runat="server" onclick="loginClick" id ="signUpBtn" class="btn btn-primary" Text="Sign Up"/>
         <asp:Label ID="LoginSuccess" runat="server" Text="" Enabled="false"></asp:Label>
 
 

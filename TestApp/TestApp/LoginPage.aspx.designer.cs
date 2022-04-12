@@ -42,6 +42,15 @@ namespace TestApp
         protected global::System.Web.UI.WebControls.Button signInBtn;
 
         /// <summary>
+        /// signUpBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button signUpBtn;
+
+        /// <summary>
         /// LoginSuccess control.
         /// </summary>
         /// <remarks>
