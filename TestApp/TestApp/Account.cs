@@ -34,6 +34,9 @@ namespace TestApp
         [BsonElement("avail_days")]
         public string avail_days { get; set; }
 
+        [BsonElement("avail_times")]
+        public string avail_times { get; set; }
+
         /* deprecated
         public void GetAccount()
         {
@@ -58,11 +61,11 @@ namespace TestApp
                 // compare given username to usernames in database
                 // if username is found in db, compare the given and stored passwords, else print no user error
                 // if passwords match, log the user in (create access token and store in db?), else print invalid credentials
-                MongoClient dbClient = new MongoClient("mongodb+srv://admin:<sob123>@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+                MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
                 var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
                 var accounts = mongodb.GetCollection<Account>("accounts");
 
-                var myAccount = accounts.Find(a => a.username == username).ToList();
+                var myAccount = accounts.Find(a => a.email == username).ToList();
                 if (myAccount != null)
                 {
                     if (myAccount[0].password == password)

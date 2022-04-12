@@ -19,7 +19,6 @@ namespace TestApp
             Account testAccount = new Account();
             string username = inputEmail.Value.ToString();
             string password = inputPassword.Value.ToString();
-
             String result = testAccount.LogIn(username, password);
 
             if (result == "Success")
