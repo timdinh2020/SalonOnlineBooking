@@ -105,12 +105,14 @@ namespace TestApp
             // check if the given email and username are both unique (not already in the db)
             // if the email or username is in the db, return an error (don't store their info in the db)
             var testEmail = accounts.Find(a => a.email == email_).ToList();
-            if ( (testEmail != null) && (!testEmail.Any()) )
-            { } else { emailFound = false; }
+            if ((testEmail != null) && (!testEmail.Any()))
+            { }
+            else { emailFound = false; }
 
             var testUsername = accounts.Find(a => a.username == username_).ToList();
-            if ( (testUsername != null) && (!testUsername.Any()) )
-            { } else { userFound = false; }
+            if ((testUsername != null) && (!testUsername.Any()))
+            { }
+            else { userFound = false; }
 
             if (emailFound && userFound)
             {
@@ -198,16 +200,6 @@ namespace TestApp
             {
                 result = "Failed. No account found with this username.";
             }
-
-            return result;
-        }
-
-        public string LogOut()
-        {
-            string result = string.Empty;
-
-            // log the user out (delete the user's access token from the db?)
-            result = "You have successfully logged out!";
 
             return result;
         }
