@@ -298,6 +298,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <None Include="appsettings.json" />
+    <Compile Include="Models\mongoDBSettings.cs" />
+    <Compile Include="mongodb.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -428,6 +431,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
