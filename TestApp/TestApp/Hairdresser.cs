@@ -11,21 +11,20 @@ namespace TestApp.Models
     {
         public string Role = "hair-dresser";
         public DateTime[] AvailableDays { get; set; }
-        public DateTime[] AvailableTimes { get; set; }
 
-        public DateTime[] ViewAvailability(DateTime[] availableDays, DateTime[] availableTimes)
+        public DateTime[] ViewAvailability(DateTime[] availableDays)
         {
             DateTime[] result = { DateTime.Now };
 
             return result;
         }
-        public DateTime[] ModifyAvailability(DateTime[] availableDays, DateTime[] availableTimes)
+        public DateTime[] ModifyAvailability(DateTime[] availableDays)
         {
             DateTime[] result = { DateTime.Now };
 
             return result;
         }
-        public string AddNewHairdresser(string username, DateTime[] availableDays, DateTime[] availableTimes)
+        public string AddNewHairdresser(string username, DateTime[] availableDays)
         {
             string result = string.Empty;
 

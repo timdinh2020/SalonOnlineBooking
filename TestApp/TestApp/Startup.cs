@@ -26,7 +26,10 @@ namespace TestApp
             var accounts = mongodb.GetCollection<Account>("accounts");
 
             var owner = accounts.Find(a => a.role == "owner").ToList();
-            var myAccount = accounts.Find(a => a.username == "tdinh123").ToList();
+
+            var response = owner[0].EditAccount(owner[0].Id, null, null, null, null, null, null, "admin");
+
+            var myAccount = accounts.Find(a => a.email == "timSOB@gmail.com").ToList();
 
             // test insert an account
             /*
