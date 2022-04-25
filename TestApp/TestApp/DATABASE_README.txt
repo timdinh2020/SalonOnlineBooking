@@ -26,6 +26,18 @@ AVAILABLE DATABASE FUNCTIONS:
 
          /*
          * 
+         * Function:     db_getAcctById
+         * 
+         * Description:  Get the account obj that matches the Id
+         * 
+         * Parameters:   BsonObjectId Id_: to be used to identify Account object in database
+         * 
+         * Return value: List<Account> - returns the list of account obj found in database 
+         * 
+         */
+
+         /*
+         * 
          * Function:     db_createAcct
          * 
          * Description:  Insert new account to the database
@@ -35,6 +47,30 @@ AVAILABLE DATABASE FUNCTIONS:
          * Return value: None
          *
          * HOW-TO: db_createAcct(Account newAcct);
+         * 
+         */
+
+         /*
+         * 
+         * Function:     db_deleteAcctById
+         * 
+         * Description:  delete an account in the database
+         * 
+         * Parameters:   BsonObjectId Id_: to be used to identify Account object in database
+         * 
+         * Return value: None
+         * 
+         */
+
+         /*
+         * 
+         * Function:     db_deleteAcctByEmail
+         * 
+         * Description:  delete an account in the database
+         * 
+         * Parameters:   string email_: to be used to identify Account object in database
+         * 
+         * Return value: None
          * 
          */
 

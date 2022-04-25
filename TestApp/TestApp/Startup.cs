@@ -19,6 +19,7 @@ namespace TestApp
             /**************************
              * Database testing
              */
+            /*
             MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
 
             var dbList = dbClient.ListDatabases().ToList();
@@ -27,21 +28,29 @@ namespace TestApp
 
             var owner = accounts.Find(a => a.role == "owner").ToList();
             var myAccount = accounts.Find(a => a.username == "tdinh123").ToList();
+            */
+
+            var mongodb = new mongodb();
+            BsonObjectId Id1 = new BsonObjectId(new ObjectId("624fa5b2437eb9a31396fadd"));
+            mongodb.db_updateFieldById(Id1, "password", "admin");
+            //var myAccount = mongodb.getAccountByEmail("timSOB@gmail.com");
 
             // test insert an account
             /*
             var newAccount = new Account
             {
-                first_name = "a",
-                last_name = "a",
-                role = "a",
-                email = "a",
+                first_name = "Harry",
+                last_name = "Styles",
+                role = "member",
+                email = "hstyles@gmail.com",
                 username = "a",
-                password = "a",
-                avail_days = "a",
+                password = "temp123",
+                avail_days = "",
+                blocked_times = ""
             };
-            accounts.InsertOne(newAccount);
+            mongodb.db_createAccount(newAccount);
             */
+            
 
             // test update password
             /*
