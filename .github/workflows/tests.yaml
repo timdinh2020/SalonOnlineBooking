@@ -44,7 +44,7 @@ jobs:
         run: vstest.console ./TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll
         
       - name: Run OpenCover
-        run: TestApp/packages/OpenCover.4.7.1221/tools/OpenCover.Console.exe -target:vstest.console -targetargs:TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll -output:TestApp/TestCov/CoverageResults.xml -register:user
+        run: TestApp/packages/OpenCover.4.7.1221/tools/OpenCover.Console.exe -target:vstest.console.exe -targetargs:TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll -output:TestApp/TestCov/CoverageResults.xml -register:user
 
       - name: Run ReportGen
         run: TestApp/packages/ReportGenerator.5.1.4/tools/net6.0/ReportGenerator.exe -reports:TestApp/TestCov/CoverageResults.xml -targetdir:TestApp/TestCov/CoverageResults
