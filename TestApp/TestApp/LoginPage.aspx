@@ -6,8 +6,65 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
     <meta charset="utf-8" />
     <title>Login</title>
+
+
+
+    <script type="text/javascript">
+        $(document).on('click', '#createAccountBtn', function ()
+        {
+
+
+            //Make sure all fields are filled out
+            if (document.getElementById("fName").value == null || document.getElementById("fName").value == "") {
+                var script = "Please enter a value for first name.";
+                alert(script);
+                return;
+            }
+            if (document.getElementById("lName").value == null || document.getElementById("lName").value == "") {
+                var script = "Please enter a value for last name.";
+                alert(script);
+                return;
+            }
+            if (document.getElementById("email").value == null || document.getElementById("email").value == "") {
+                var script = "Please enter a value for email.";
+                alert(script);
+                return;
+            }
+            if (document.getElementById("password").value == null || document.getElementById("password").value == "") {
+                var script = "Please enter a value for password.";
+                alert(script);
+                return;
+            }
+
+
+            // Get create account information
+            var fName = document.getElementById("fName").value;
+            var lName = document.getElementById("lName").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            //Set hidden field values that contain account information
+            document.getElementById("fNameHidden").value = fName;
+            document.getElementById("lNameHidden").value = lName;
+            document.getElementById("emailHidden").value = email;
+            document.getElementById("passwordHidden").value = password;
+
+            console.log(fName);
+
+            //Call button click
+            document.getElementById('<%= hiddenButton.ClientID %>').click();
+
+        });
+    </script>
+
+
 </head>
 <body>
     <h1 class="display-5" style="text-align: center;">Welcome to the Salon Online Booking System</h1>
@@ -31,11 +88,27 @@
                 <input type="password" class="form-control" id="inputPassword" runat ="server">
             </div>
         </div>
-        <br>
         <asp:Button runat="server" onclick="loginClick" id ="signInBtn" class="btn btn-primary" Text="Sign In"/>
+
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#accountModal">Sign Up</button>
-        <asp:Label ID="LoginSuccess" runat="server" Text="" Enabled="false"></asp:Label>
+        
+        <%--Hidden button to call create account--%>
+        <div style = "display:none;">
+            <asp:Button runat="server" onclick="createAccountClick" id ="hiddenButton" class="btn btn-primary" Text=""/>
+        </div>
+
+        <br /><br />
+
+        <%--Label to notify of account creation success or failed login--%>
+        <asp:Label ID="StatusMessage" runat="server" Text="" Enabled="false"></asp:Label>
+
+
+        <%--Hidden fields to contain create account information--%>
+        <asp:HiddenField ID="fNameHidden" value="" runat="server"/>
+        <asp:HiddenField ID="lNameHidden" value="" runat="server" />
+        <asp:HiddenField ID="emailHidden" value="" runat="server" />
+        <asp:HiddenField ID="passwordHidden" value="" runat="server" />
 
 
     </form>
@@ -53,30 +126,32 @@
                     <div class="mb-3">
                         <div class="input-group mb-3">
                             <span class="input-group-text col-3" id="basic-addon1">First Name</span>
-                            <input type="text" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" runat="server" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1" id ="fName">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text col-3" id="basic-addon1">Last Name</span>
-                            <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text col-3" id="basic-addon2">Last Name</span>
+                            <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1" value ="" id ="lName" runat="server">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text col-3" id="basic-addon1">Email</span>
-                            <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text col-3" id="basic-addon3">Email</span>
+                            <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" value ="" id ="email" runat="server">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text col-3" id="basic-addon1">Password</span>
-                            <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text col-3" id="basic-addon4">Password</span>
+                            <input type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" value ="" id ="password" runat="server">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Create Account</button>
+                        <%--<asp:Button runat="server" id ="createAccountBtn" class="btn btn-primary" Text="CreateAccount"/>--%>
+                        <a href="#" class="btn btn-primary" onclick ="createAccountBtn" id="createAccountBtn">Create Account</a>
+                        <%--<button type="button" class="btn btn-primary" onClick ="CreateAccountClick()">Create Account</button>--%>
+                        <asp:Label ID="errorLabel" runat="server" Text="" Enabled="false"></asp:Label>
                     </div>
                 </div>
             </div>
          </div>
     </div>
-
 
 </body>
 </html>

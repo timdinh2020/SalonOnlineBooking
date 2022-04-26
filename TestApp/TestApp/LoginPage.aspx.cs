@@ -11,25 +11,48 @@ namespace TestApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void loginClick(object sender, EventArgs e)
         {
-            Account testAccount = new Account();
+            Account userAccount = new Account();
             string username = inputEmail.Value.ToString();
             string password = inputPassword.Value.ToString();
-            String result = testAccount.LogIn(username, password);
+            String result = userAccount.LogIn(username, password);
+
 
             if (result == "Success")
             {
-                LoginSuccess.Text = "Login Succeeded";
+                Page.Response.Redirect("~/HomePage.aspx", true);
             }
             else
             {
-                LoginSuccess.Text = "Login Failed";
+                StatusMessage.Text = result;
             }
             return;
+        }
+
+        protected void createAccountClick(object sender, EventArgs e)
+        {
+
+            string firstName = fNameHidden.Value;
+            string lastName = lNameHidden.Value;
+            string userEmail = emailHidden.Value;
+            string userPassword = passwordHidden.Value;
+
+            Account userAccount = new Account();
+
+            string result = userAccount.CreateAccount(firstName, lastName, "User", userEmail, "", userPassword, "Monday");
+
+            if (result == "Account Creation Successful!")
+            {
+                StatusMessage.Text = "Account successfully created.";
+            }
+            else
+            {
+                StatusMessage.Text = result;
+            }
+
         }
     }
 }

@@ -23,10 +23,10 @@ namespace TestApp
 
             var dbList = dbClient.ListDatabases().ToList();
             var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
-            var accounts = mongodb.GetCollection<Account>("accounts");
+            //var accounts = mongodb.GetCollection<Account>("accounts");
 
-            var owner = accounts.Find(a => a.role == "owner").ToList();
-            var myAccount = accounts.Find(a => a.username == "tdinh123").ToList();
+            //var owner = accounts.Find(a => a.role == "owner").ToList();
+            //var myAccount = accounts.Find(a => a.username == "tdinh123").ToList();
 
             // test insert an account
             /*
