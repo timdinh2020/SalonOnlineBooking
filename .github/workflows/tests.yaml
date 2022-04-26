@@ -39,10 +39,10 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run VSTest
-        run: vstest.console SalonOnlineBooking\TestApp\SOBTests\bin\Debug\net6.0\SOBTests.dll
+        run: vstest.console SalonOnlineBooking/TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll
         
       - name: Run OpenCover
-        run: "SalonOnlineBooking\TestApp\packages\OpenCover.4.7.1221\tools\OpenCover.Console.exe" -target:vstest.console -targetargs:"SalonOnlineBooking\TestApp\SOBTests\bin\Debug\net6.0\SOBTests.dll" -output:"SalonOnlineBooking\TestApp\TestCov\CoverageResults.xml" -register:user
+        run: \"SalonOnlineBooking/TestApp/packages/OpenCover.4.7.1221/tools/OpenCover.Console.exe\" -target:vstest.console -targetargs:\"SalonOnlineBooking/TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll\" -output:\"SalonOnlineBooking/TestApp/TestCov/CoverageResults.xml\" -register:user
 
       - name: Run ReportGen
-        run: "SalonOnlineBooking\TestApp\packages\ReportGenerator.5.1.4\tools\net6.0\ReportGenerator.exe" -reports:"SalonOnlineBooking\TestApp\TestCov\CoverageResults.xml" -targetdir:"SalonOnlineBooking\TestApp\TestCov\CoverageResults"
+        run: \"SalonOnlineBooking/TestApp/packages/ReportGenerator.5.1.4/tools/net6.0/ReportGenerator.exe\" -reports:\"SalonOnlineBooking/TestApp/TestCov/CoverageResults.xml\" -targetdir:\"SalonOnlineBooking/TestApp/TestCov/CoverageResults\"
