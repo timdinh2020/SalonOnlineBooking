@@ -25,9 +25,6 @@ namespace TestApp
         [BsonElement("email")]
         public string email { get; set; }
 
-        [BsonElement("username")]
-        public string username { get; set; }
-
         [BsonElement("password")]
         public string password { get; set; }
 
@@ -42,10 +39,10 @@ namespace TestApp
             string result = string.Empty;
 
             // if the user didn't enter an email or a password
-            if (email_ == null || password_ == null)
+            if (email_ == null || password_ == null || email_ == string.Empty || password_ == string.Empty)
             {
                 // don't try to log them in, inform the user that both must be entered to continue
-                result = "Both username and password are required inputs. Try again.";
+                result = "Both email and password are required inputs. Try again.";
             }
             else // if the user did enter an email and password
             {   
@@ -55,8 +52,8 @@ namespace TestApp
                 // search for an account with the given email in the database
                 var user = db.db_getAcctByEmail(email_);
 
-                // if a matching account is found in db (not null)
-                if (user != null)
+                // if a matching account is found in db (count is not 0)
+                if (user.Count != 0)
                 {
                     // if the password of the stored account matches the given password
                     if (user[0].password == password_)
@@ -64,7 +61,7 @@ namespace TestApp
                         // log the user in (update their access token field in the db to a valid token)
 
                         // make a success message
-                        result = "Success";
+                        result = "You have been successfully logged in!";
                     }
                     else // if the passwords don't match
                     {
@@ -83,34 +80,27 @@ namespace TestApp
             return result;
         }
 
-        public string CreateAccount(string firstName_, string lastName_, string role_, string email_, string username_, string password_, string avail_days_)
+        public string CreateAccount(string firstName_, string lastName_, string role_, string email_, string password_, string avail_days_)
         {
             string result = string.Empty;
 
             mongodb db = new mongodb();
 
             // if the user didn't enter a value for one of the fields
-            if (firstName_ == null || lastName_ == null || email_ == null || password_ == null)
+            if (firstName_ == null || lastName_ == null || email_ == null || password_ == null ||
+                firstName_ == string.Empty || lastName_ == string.Empty || email_ == string.Empty || 
+                password_ == string.Empty)
             {
                 // make a failure message and return it immediately
                 result = "All fields are required. Try again.";
                 return result;
             }
 
-            //var testEmail = accounts.Find(a => a.email == email_).ToList();
-
-            //if ( (testEmail != null) && (!testEmail.Any()) )
-            //{ } else { emailFound = false; }
-
-            //var testUsername = accounts.Find(a => a.username == username_).ToList();
-            //if ( (testUsername != null) && (!testUsername.Any()) )
-            //{ } else { userFound = false; }
-
             // search for an account with the given email in the database
             var user = db.db_getAcctByEmail(email_);
 
-            // if a matching account is found in db (not null)
-            if(user != null)
+            // if a matching account is found in db (count is not 0)
+            if(user.Count != 0)
             {
                 // don't create the new account, make a failure message
                 result = "That email is already associated with an account. Try again.";
@@ -124,7 +114,6 @@ namespace TestApp
                     lastName = lastName_,
                     role = role_,
                     email = email_,
-                    username = username_,
                     password = password_,
                     avail_days = string.Empty
                 };
@@ -133,14 +122,14 @@ namespace TestApp
                 db.db_createAcct(newAccount);
 
                 // make a success message
-                result = "Account Creation Successful!";
+                result = "Your account has been successfully created!";
             }
 
             // return the message
             return result;
         }
 
-        public string EditAccount(BsonObjectId Id_, string firstName_, string lastName_, string email_, string username_, string new_pass, string avail_days_, string password_)
+        public string EditAccount(BsonObjectId Id_, string firstName_, string lastName_, string email_, string new_pass, string avail_days_, string password_)
         {
             string result = string.Empty;
             
@@ -154,21 +143,24 @@ namespace TestApp
                 return result;
             }
 
-            Account account = new Account {
-                firstName = "Tim",
-                    lastName = "Dinh",
-                    role = "owner",
-                    email = "timSOB@gmail.com",
-                    username = "timSOB@gmail.com",
-                    password = "admin",
-                    avail_days = "mon,tues,wed,thurs,fri"
-            };
+            // used for testing
+            //Account account = new Account {
+            //    firstName = "Tim",
+            //        lastName = "Dinh",
+            //        role = "owner",
+            //        email = "timSOB@gmail.com",
+            //        password = "admin",
+            //        avail_days = "mon,tues,wed,thurs,fri"
+            //};
+
+            //// set the account array to include the above account
+            //Account[] user = new Account[1] {account};
 
             // search for an account with the given ID in the database
-            Account[] user = new Account[1] {account}; // db.db_getAcctById(Id_);
+            var user = db.db_getAcctById(Id_);
 
-            // if a matching account is not found in the db
-            if (user == null)
+            // if a matching account is not found in db (count is 0)
+            if (user.Count == 0)
             {
                 // make a failure message and return it immediately
                 result = "That account doesn't exist. Try again.";
@@ -179,54 +171,47 @@ namespace TestApp
             if (user[0].password != password_)
             {
                 // don't update the user's account, make a failure message
-                result = "Login Failed. Incorrect password.";
+                result = "Account update failed due to incorrect password. Try again.";
             }
             else // if the passwords do match
             {
                 // if the user entered a new first name
-                if (firstName_ != null)
+                if (firstName_ != null && firstName_ != string.Empty)
                 {
                     // update the user's stored first name in the db
                     db.db_updateFieldById(Id_, "first_name", firstName_);
                 }
 
                 // if the user entered a new last name
-                if (lastName_ != null)
+                if (lastName_ != null && lastName_ != string.Empty)
                 {
                     // update the user's stored last name in the db
                     db.db_updateFieldById(Id_, "last_name", lastName_);
                 }
 
                 // if the user entered a new email
-                if (email_ != null)
+                if (email_ != null && email_ != string.Empty)
                 {
                     // update the user's stored email in the db
                     db.db_updateFieldById(Id_, "email", email_);
                 }
 
-                // if the user entered a new username
-                if (username_ != null)
-                {
-                    // update the user's stored username in the db
-                    db.db_updateFieldById(Id_, "username", username_);
-                }
-
                 // if the user entered a new password
-                if (new_pass != null)
+                if (new_pass != null && new_pass != string.Empty)
                 {
                     // update the user's stored password in the db
                     db.db_updateFieldById(Id_, "password", new_pass);
                 }
 
                 // if the user (hairdresser) entered a new list of available days
-                if(avail_days_ != null)
+                if(avail_days_ != null && avail_days_ != string.Empty)
                 {
                     // update the user's stored list of available days in the db
                     db.db_updateFieldById(Id_, "avail_days", avail_days_);
                 }
 
                 // make a success message
-                result = "Your account has been successfully updated.";
+                result = "Your account has been successfully updated!";
             }
 
             // return the message
@@ -239,22 +224,25 @@ namespace TestApp
 
             mongodb db = new mongodb();
 
-            Account account = new Account
-            {
-                firstName = "Tim",
-                lastName = "Dinh",
-                role = "owner",
-                email = "timSOB@gmail.com",
-                username = "timSOB@gmail.com",
-                password = "admin",
-                avail_days = "mon,tues,wed,thurs,fri"
-            };
+            //Account account = new Account
+            //{
+            //    firstName = "Tim",
+            //    lastName = "Dinh",
+            //    role = "owner",
+            //    email = "timSOB@gmail.com",
+            //    password = "admin",
+            //    avail_days = "mon,tues,wed,thurs,fri"
+            //};
+
+            
+            //// set the account array to include the above account
+            //Account[] user = new Account[1] { account }; // db.db_getAcctById(Id_);
 
             // search for an account with the given ID in the database
-            Account[] user = new Account[1] { account }; // db.db_getAcctById(Id_);
+            var user = db.db_getAcctById(Id_);
 
-            // if a matching account is found in db (not null)
-            if (user != null)
+            // if a matching account is found in db (count is not 0)
+            if (user.Count != 0)
             {
                 // if the password of the stored account matches the given password
                 if (user[0].password == password_)
@@ -263,7 +251,7 @@ namespace TestApp
                     db.db_updateFieldById(Id_, "password", new_pass);
 
                     // make a success message
-                    result = "You password has been successfully updated.";
+                    result = "Your password has been successfully updated!";
                 }
                 else // if the passwords don't match
                 {
@@ -274,18 +262,21 @@ namespace TestApp
             else // if a matching account is not found in the database
             {
                 // make a failure message
-                result = "Failed. No account found with this username.";
+                result = "Password reset failed. No account found.";
             }
 
             // return the message
             return result;
         }
 
-        public string LogOut()
+        public string LogOut(BsonObjectId Id_)
         {
             string result = string.Empty;
 
-            // log the user out (clear the user's access token column in the database)
+            mongodb db = new mongodb();
+
+            // log the user out by clearing the user's access token column in the database
+            // db.db_updateFieldById(Id_, "access_token", "");
 
             // make a success message
             result = "You have been successfully logged out!";

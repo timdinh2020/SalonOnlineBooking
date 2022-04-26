@@ -27,9 +27,18 @@ namespace TestApp
 
             var owner = accounts.Find(a => a.role == "owner").ToList();
 
-            var response = owner[0].EditAccount(owner[0].Id, null, null, null, null, null, null, "admin");
+            //var newAcc = new Account();
+            //var resp = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexisSOBpe@gmail.com", "alexisSOBpe@gmail.com", "pass123", string.Empty);
 
-            var myAccount = accounts.Find(a => a.email == "timSOB@gmail.com").ToList();
+            var acc = accounts.Find(a => a.email == "alexisSOBpe@gmail.com").ToList();
+            //var resp = acc[0].LogIn("alexisSOBpe@gmail.com", "pass123");
+            //var resp = acc[0].EditAccount(acc[0].Id, "Nikole", "", "", "", "", "pass123");
+            //var resp = acc[0].ResetPassword(acc[0].Id, "pass123", "pass1234");
+            //var resp = acc[0].LogOut(acc[0].Id);
+
+            //var response = owner[0].EditAccount(owner[0].Id, null, null, null, null, null, null, "admin");
+
+            var myAccount = accounts.Find(a => a.email == "alexisSOBpe@gmail.com").ToList();
 
             // test insert an account
             /*

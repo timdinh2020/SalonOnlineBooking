@@ -13,7 +13,6 @@ namespace TestApp
 
         // accounts Collection **************************************************
         /*
-         * 
          * Function:     db_getAcctByEmail
          * 
          * Description:  Get the account obj that matches the email
@@ -30,6 +29,28 @@ namespace TestApp
             var accounts = mongodb.GetCollection<Account>("accounts");
 
             var myAccount = accounts.Find(a => a.email == email_).ToList();
+
+            return myAccount;
+        }
+
+        /*
+         * 
+         * Function:     db_getAcctById
+         * 
+         * Description:  Get the account obj that matches the Id
+         * 
+         * Parameters:   BsonObjectId Id_: to be used to identify Account object in database
+         * 
+         * Return value: List<Account> - returns the list of account obj found in database 
+         * 
+         */
+        public List<Account> db_getAcctById(BsonObjectId Id_)
+        {
+            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+            var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
+            var accounts = mongodb.GetCollection<Account>("accounts");
+
+            var myAccount = accounts.Find(a => a.Id == Id_).ToList();
 
             return myAccount;
         }
@@ -56,6 +77,46 @@ namespace TestApp
 
         /*
          * 
+         * Function:     db_deleteAcctById
+         * 
+         * Description:  delete an account in the database
+         * 
+         * Parameters:   BsonObjectId Id_: to be used to identify Account object in database
+         * 
+         * Return value: None
+         * 
+         */
+        public void db_deleteAcctById(BsonObjectId Id_)
+        {
+            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+            var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
+            var accounts = mongodb.GetCollection<Account>("accounts");
+
+            accounts.DeleteOne(a => a.Id == Id_);
+        }
+
+        /*
+         * 
+         * Function:     db_deleteAcctByEmail
+         * 
+         * Description:  delete an account in the database
+         * 
+         * Parameters:   string email_: to be used to identify Account object in database
+         * 
+         * Return value: None
+         * 
+         */
+        public void db_deleteAcctByEmail(string email_)
+        {
+            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+            var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
+            var accounts = mongodb.GetCollection<Account>("accounts");
+
+            accounts.DeleteOne(a => a.email == email_);
+        }
+
+        /*
+         * 
          * Function:     db_updateFieldById
          * 
          * Description:  Get the account obj that matches the email
@@ -65,6 +126,7 @@ namespace TestApp
          *               string value - new value to the field name
          *               
          * Return value: None
+         * 
          */
         public void db_updateFieldById(BsonObjectId Id_, string field_name, string value)
         {
