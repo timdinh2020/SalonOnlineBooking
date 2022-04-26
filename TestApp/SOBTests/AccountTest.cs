@@ -15,7 +15,7 @@ namespace SOBTests
         // OpenCover: D:\Git\SalonOnlineBooking\TestApp\packages\OpenCover.4.7.1221\tools\OpenCover.Console.exe
         // ReportGen: D:\Git\SalonOnlineBooking\TestApp\packages\ReportGenerator.5.1.4\tools\net6.0\ReportGenerator.exe
 
-        /* Open Cover
+        /* Open Cover:
           "D:\Git\SalonOnlineBooking\TestApp\packages\OpenCover.4.7.1221\tools\OpenCover.Console.exe" -target:"D:\Visual Studio 2022\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" -targetargs:"D:\Git\SalonOnlineBooking\TestApp\SOBTests\bin\Debug\net6.0\SOBTests.dll" -output:"D:\Git\SalonOnlineBooking\TestApp\TestCov\CoverageResults.xml" -register:user
          */
 

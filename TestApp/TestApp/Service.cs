@@ -124,7 +124,7 @@ namespace TestApp
             // if the index of the service to update is valid (not -1)
             if (index != -1)
             {
-                // store the service's details in a list
+                // store the service's details in a list to return
                 result.Add(services[index].title);
                 result.Add(services[index].description);
                 result.Add(services[index].startingPrice);
