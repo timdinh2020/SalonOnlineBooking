@@ -29,12 +29,12 @@ jobs:
       # Restores the dependencies for the project
       - name: Restore dependencies
         run: |
-          dotnet restore ./TestApp/TestApp/TestApp.csproj
-          dotnet restore ./TestApp/SOBTests/SOBTests.csproj
+          dotnet restore TestApp/TestApp/TestApp.csproj
+          dotnet restore TestApp/SOBTests/SOBTests.csproj
         
       # Builds the project
       - name: Build project
-        run: dotnet build ./TestApp/TestApp.sln --no-restore
+        run: dotnet build TestApp/TestApp.sln --no-restore
         
       - name: Setup VSTest.exe
         uses: Malcolmnixon/Setup-VSTest@v4
