@@ -33,8 +33,8 @@ jobs:
       #    dotnet restore TestApp/SOBTests/SOBTests.csproj
         
       # Builds the project
-      - name: Build project
-        run: dotnet build TestApp/TestApp.sln --no-restore
+      #- name: Build project
+      #  run: dotnet build TestApp/TestApp.sln --no-restore
         
       - name: Setup VSTest.exe
         uses: Malcolmnixon/Setup-VSTest@v4
