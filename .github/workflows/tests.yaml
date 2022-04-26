@@ -29,22 +29,22 @@ jobs:
       # Restores the dependencies for the project
       - name: Restore dependencies
         run: |
-          dotnet restore SalonOnlineBooking/TestApp/TestApp/TestApp.csproj
-          dotnet restore SalonOnlineBooking/TestApp/SOBTests/SOBTests.csproj
+          dotnet restore ../../TestApp/TestApp/TestApp.csproj
+          dotnet restore ../../TestApp/SOBTests/SOBTests.csproj
         
       # Builds the project
       - name: Build project
-        run: dotnet build SalonOnlineBooking/TestApp/TestApp.sln --no-restore
+        run: dotnet build ../../TestApp/TestApp.sln --no-restore
         
       - name: Setup VSTest.exe
         uses: Malcolmnixon/Setup-VSTest@v4
 
       # Runs a set of commands using the runners shell
       - name: Run VSTest
-        run: vstest.console SalonOnlineBooking/TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll
+        run: vstest.console ../../TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll
         
       - name: Run OpenCover
-        run: \"SalonOnlineBooking/TestApp/packages/OpenCover.4.7.1221/tools/OpenCover.Console.exe\" -target:vstest.console -targetargs:\"SalonOnlineBooking/TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll\" -output:\"SalonOnlineBooking/TestApp/TestCov/CoverageResults.xml\" -register:user
+        run: \"../../TestApp/packages/OpenCover.4.7.1221/tools/OpenCover.Console.exe\" -target:vstest.console -targetargs:\"../../TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll\" -output:\"../../TestApp/TestCov/CoverageResults.xml\" -register:user
 
       - name: Run ReportGen
-        run: \"SalonOnlineBooking/TestApp/packages/ReportGenerator.5.1.4/tools/net6.0/ReportGenerator.exe\" -reports:\"SalonOnlineBooking/TestApp/TestCov/CoverageResults.xml\" -targetdir:\"SalonOnlineBooking/TestApp/TestCov/CoverageResults\"
+        run: \"../../TestApp/packages/ReportGenerator.5.1.4/tools/net6.0/ReportGenerator.exe\" -reports:\"../../TestApp/TestCov/CoverageResults.xml\" -targetdir:\"../../TestApp/TestCov/CoverageResults\"
