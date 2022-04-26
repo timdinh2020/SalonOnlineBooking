@@ -28,11 +28,13 @@ jobs:
       
       # Restores the dependencies for the project
       - name: Restore dependencies
-        run: dotnet restore
+        run: |
+          dotnet restore SalonOnlineBooking/TestApp/TestApp/TestApp.csproj
+          dotnet restore SalonOnlineBooking/TestApp/SOBTests/SOBTests.csproj
         
       # Builds the project
       - name: Build project
-        run: dotnet build --no-restore
+        run: dotnet build SalonOnlineBooking/TestApp/TestApp.sln --no-restore
         
       - name: Setup VSTest.exe
         uses: Malcolmnixon/Setup-VSTest@v4
