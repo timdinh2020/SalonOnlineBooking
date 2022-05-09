@@ -50,29 +50,6 @@ namespace SOBTests
         }
 
         [TestMethod]
-        public void RemoveHairdresserTest()
-        {
-            // Arrange
-            string expectedRight = "Success";
-            string expectedWrong = "There is no account with that email. Try again.";
-            string expectedWrong2 = "Removal failed. The given account is not a hair-dresser account.";
-
-            Hairdresser hairdresser = new Hairdresser();
-
-            string email = "janedoe123@gmail.com";
-
-            // Act
-            string actualRight = hairdresser.RemoveHairdresser(email);
-            string actualWrong = hairdresser.RemoveHairdresser("test@test.test");
-            string actualWrong2 = hairdresser.RemoveHairdresser("alexisSOBpe@gmail.com");
-
-            // Assert
-            Assert.AreEqual(expectedRight, actualRight);
-            Assert.AreEqual(expectedWrong, actualWrong);
-            Assert.AreEqual(expectedWrong2, actualWrong2);
-        }
-
-        [TestMethod]
         public void ViewAvailabilityTest()
         {
             // Arrange
@@ -99,15 +76,12 @@ namespace SOBTests
             List<DateTime> actualWrong = new List<DateTime>();
             List<DateTime> actualWrong2 = new List<DateTime>();
 
-            var accounts = db.db_getAcctsByRole("hair-dresser");
+            var jane = db.db_getAcctByEmail("janedoe123@gmail.com");
 
             var acc = db.db_getAcctByEmail("alexisSOBpe@gmail.com");
 
             // Act
-            for (int i = 0; i < accounts.Count; i++)
-            {
-                actualRight = hairdresser.ViewAvailability(accounts[i].email);
-            }
+            actualRight = hairdresser.ViewAvailability(jane.email);
 
             actualWrong = hairdresser.ViewAvailability(acc.email);
             actualWrong2 = hairdresser.ViewAvailability("tets@test.test");
@@ -152,6 +126,29 @@ namespace SOBTests
             string actualRight = hairdresser.ModifyAvailability(acc.email, newAvail);
             string actualWrong = hairdresser.ModifyAvailability("tets@test.test", newAvail);
             string actualWrong2 = hairdresser.ModifyAvailability("alexisSOBpe@gmail.com", newAvail);
+
+            // Assert
+            Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedWrong, actualWrong);
+            Assert.AreEqual(expectedWrong2, actualWrong2);
+        }
+
+        [TestMethod]
+        public void RemoveHairdresserTest()
+        {
+            // Arrange
+            string expectedRight = "Success";
+            string expectedWrong = "There is no account with that email. Try again.";
+            string expectedWrong2 = "Removal failed. The given account is not a hair-dresser account.";
+
+            Hairdresser hairdresser = new Hairdresser();
+
+            string email = "janedoe123@gmail.com";
+
+            // Act
+            string actualRight = hairdresser.RemoveHairdresser(email);
+            string actualWrong = hairdresser.RemoveHairdresser("test@test.test");
+            string actualWrong2 = hairdresser.RemoveHairdresser("alexisSOBpe@gmail.com");
 
             // Assert
             Assert.AreEqual(expectedRight, actualRight);
