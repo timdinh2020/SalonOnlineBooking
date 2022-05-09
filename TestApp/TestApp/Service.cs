@@ -153,6 +153,23 @@ namespace TestApp
                     // report successful removal message
                     result = "Success";
                 }
+                else if(master.title == t_) // if this service's title matches the given title
+                {
+                    for(int i = 0; i < master.subServices.Count(); i++)
+                    {
+                        var sub = db.db_getServByTitle(master.subServices[i].title);
+
+                        if (sub != null)
+                        {
+                            db.db_updateServById(sub.Id, "master_service", "");
+                        }
+                    }
+
+                    // delete this service from the db
+                    db.db_deleteServByTitle(master.title);
+
+                    result = "Success";
+                }
                 else // if a matching service was not found
                 {
                     // report non-existing service error message

@@ -43,67 +43,6 @@ namespace SOBTests
         }
 
         [TestMethod]
-        public void RemoveServiceTest()
-        {
-            // Arrange
-            string expectedRight = "Success";
-            string expectedWrong = "Service removal failed. That service does not exist.";
-
-            mongodb db = new mongodb();
-
-            // you MUST get the master/regular services like this before calling any of its service functions
-            var hair = db.db_getServByTitle("Hair Cutting");
-
-            // Act
-
-            // removes the fade service, (false because we are removing it from the db)
-            string actualRight = hair.RemoveService("Fade", false);
-
-            // doesn't work because test is not a service
-            string actualWrong = hair.RemoveService("Test", false);
-
-            // Assert
-            Assert.AreEqual(expectedRight, actualRight);
-            Assert.AreEqual(expectedWrong, actualWrong);
-        }
-
-        [TestMethod]
-        public void ModifyServiceTest()
-        {
-            // Arrange
-            string expectedRight = "Success";
-            string expectedWrong = "Modification failed. The given master service does not exist.";
-
-            mongodb db = new mongodb();
-
-            var shaveServ = new Service("Shave It All", "Get rid of all that pesky hair on your head!", 5.99, "Hair Cutting");
-
-            // you MUST get the master/regular services like this before calling any of its service functions
-            var hair = db.db_getServByTitle("Hair Cutting");
-
-            // add the created service (shave it all) to the list of sub services for its master service (hair cutting)
-            hair.AddNewService(shaveServ);
-
-            var shave = db.db_getServByTitle("Shave It All");
-
-            // Act
-
-            // changes the service name
-            string actualRight = shave.ModifyService("Bald Shave", "", 6.50, null, null);
-
-            // changes nothing
-            string actualRight2 = shave.ModifyService("Bald Shave", "", 6.50, null, null); 
-
-            // doesn't work since Hair Loss isn't an existing master service
-            string actualWrong = shave.ModifyService("Bald Shave", "", 6.50, "Hair Loss", null);
-
-            // Assert
-            Assert.AreEqual(expectedRight, actualRight);
-            Assert.AreEqual(expectedRight, actualRight2);
-            Assert.AreEqual(expectedWrong, actualWrong);
-        }
-
-        [TestMethod]
         public void ViewServiceDetailsTest()
         {
             // Arrange
@@ -143,7 +82,7 @@ namespace SOBTests
         {
             // Arrange
             string expectedTitle = "Trim";
-            string expectedTitle2 = "Shape Up";
+            string expectedTitle2 = "Fade";
 
             mongodb db = new mongodb();
 
@@ -159,6 +98,78 @@ namespace SOBTests
             // Assert
             Assert.AreEqual(expectedTitle, actualTitle);
             Assert.AreEqual(expectedTitle2, actualTitle2);
+        }
+
+        [TestMethod]
+        public void ModifyServiceTest()
+        {
+            // Arrange
+            string expectedRight = "Success";
+            string expectedWrong = "Modification failed. The given master service does not exist.";
+
+            mongodb db = new mongodb();
+
+            var shaveServ = new Service("Shave It All", "Get rid of all that pesky hair on your head!", 5.99, "Hair Cutting");
+
+            // you MUST get the master/regular services like this before calling any of its service functions
+            var hair = db.db_getServByTitle("Hair Cutting");
+
+            // add the created service (shave it all) to the list of sub services for its master service (hair cutting)
+            hair.AddNewService(shaveServ);
+
+            var shave = db.db_getServByTitle("Shave It All");
+
+            // Act
+
+            // changes the service name
+            string actualRight = shave.ModifyService("Bald Shave", "", 6.50, null, null);
+
+            // changes nothing
+            string actualRight2 = shave.ModifyService("Bald Shave", "", 6.50, null, null); 
+
+            // doesn't work since Hair Loss isn't an existing master service
+            string actualWrong = shave.ModifyService("Bald Shave", "", 6.50, "Hair Loss", null);
+
+            // Assert
+            Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedRight, actualRight2);
+            Assert.AreEqual(expectedWrong, actualWrong);
+        }
+
+        [TestMethod]
+        public void RemoveServiceTest()
+        {
+            // Arrange
+            string expectedRight = "Success";
+            string expectedWrong = "Service removal failed. That service does not exist.";
+
+            mongodb db = new mongodb();
+
+            // you MUST get the master/regular services like this before calling any of its service functions
+            var hair = db.db_getServByTitle("Hair Cutting");
+
+            // Act
+
+            // removes the fade service, (false because we are removing it from the db)
+            string actualRight = hair.RemoveService("Fade", false);
+
+            // doesn't work because test is not a service
+            string actualWrong = hair.RemoveService("Test", false);
+
+            string actualRight2 = hair.RemoveService("Trim", false);
+            string actualRight3 = hair.RemoveService("Shape Up", false);
+            string actualRight4 = hair.RemoveService("Bald Shave", false);
+
+            // removes the hair cutting service
+            string actualRight5 = hair.RemoveService("Hair Cutting", false);
+
+            // Assert
+            Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedRight, actualRight2);
+            Assert.AreEqual(expectedRight, actualRight3);
+            Assert.AreEqual(expectedRight, actualRight4);
+            Assert.AreEqual(expectedRight, actualRight5);
+            Assert.AreEqual(expectedWrong, actualWrong);
         }
     }
 }
