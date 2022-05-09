@@ -29,10 +29,7 @@ namespace TestApp
         public string password { get; set; }
 
         [BsonElement("avail_days")]
-        public string avail_days { get; set; }
-
-        [BsonElement("avail_times")]
-        public string avail_times { get; set; }
+        public List<string> avail_days { get; set; }
 
         public string LogIn(string email_, string password_)
         {
@@ -53,15 +50,15 @@ namespace TestApp
                 var user = db.db_getAcctByEmail(email_);
 
                 // if a matching account is found in db (count is not 0)
-                if (user.Count != 0)
+                if (user != null)
                 {
                     // if the password of the stored account matches the given password
-                    if (user[0].password == password_)
+                    if (user.password == password_)
                     {
                         // log the user in (update their access token field in the db to a valid token)
 
                         // make a success message
-                        result = "You have been successfully logged in!";
+                        result = "Success";
                     }
                     else // if the passwords don't match
                     {
@@ -80,7 +77,7 @@ namespace TestApp
             return result;
         }
 
-        public string CreateAccount(string firstName_, string lastName_, string role_, string email_, string password_, string avail_days_)
+        public string CreateAccount(string firstName_, string lastName_, string role_, string email_, string password_)
         {
             string result = string.Empty;
 
@@ -100,7 +97,7 @@ namespace TestApp
             var user = db.db_getAcctByEmail(email_);
 
             // if a matching account is found in db (count is not 0)
-            if(user.Count != 0)
+            if(user != null)
             {
                 // don't create the new account, make a failure message
                 result = "That email is already associated with an account. Try again.";
@@ -115,31 +112,31 @@ namespace TestApp
                     role = role_,
                     email = email_,
                     password = password_,
-                    avail_days = string.Empty
+                    avail_days = null
                 };
 
                 // add the new account to the database
                 db.db_createAcct(newAccount);
 
                 // make a success message
-                result = "Your account has been successfully created!";
+                result = "Success";
             }
 
             // return the message
             return result;
         }
 
-        public string EditAccount(BsonObjectId Id_, string firstName_, string lastName_, string email_, string new_pass, string avail_days_, string password_)
+        public string EditAccount(string token, string firstName_, string lastName_, string email_, string new_pass, string password_)
         {
             string result = string.Empty;
             
             mongodb db = new mongodb();
 
             // if an account ID was not entered
-            if(Id_ == null)
+            if(token == null)
             {
                 // make a failure message and return it immediately
-                result = "No account to update. Try again.";
+                result = "No account found to update. Try again.";
                 return result;
             }
 
@@ -157,10 +154,10 @@ namespace TestApp
             //Account[] user = new Account[1] {account};
 
             // search for an account with the given ID in the database
-            var user = db.db_getAcctById(Id_);
+            var user = db.db_getAcctByEmail(token);
 
             // if a matching account is not found in db (count is 0)
-            if (user.Count == 0)
+            if (user == null)
             {
                 // make a failure message and return it immediately
                 result = "That account doesn't exist. Try again.";
@@ -168,7 +165,7 @@ namespace TestApp
             }
 
             // if the password of the stored account doesn't match the given password
-            if (user[0].password != password_)
+            if (user.password != password_)
             {
                 // don't update the user's account, make a failure message
                 result = "Account update failed due to incorrect password. Try again.";
@@ -179,79 +176,68 @@ namespace TestApp
                 if (firstName_ != null && firstName_ != string.Empty)
                 {
                     // update the user's stored first name in the db
-                    db.db_updateFieldById(Id_, "first_name", firstName_);
+                    db.db_updateAcctById(user.Id, "first_name", firstName_);
                 }
 
                 // if the user entered a new last name
                 if (lastName_ != null && lastName_ != string.Empty)
                 {
                     // update the user's stored last name in the db
-                    db.db_updateFieldById(Id_, "last_name", lastName_);
+                    db.db_updateAcctById(user.Id, "last_name", lastName_);
                 }
 
                 // if the user entered a new email
                 if (email_ != null && email_ != string.Empty)
                 {
-                    // update the user's stored email in the db
-                    db.db_updateFieldById(Id_, "email", email_);
+                    var existingUser = db.db_getAcctByEmail(email_);
+
+                    if (existingUser == null)
+                    {
+                        // update the user's stored email in the db
+                        db.db_updateAcctById(user.Id, "email", email_);
+                    }
+                    else
+                    {
+                        result = "That email is already associated with an account. Try again.";
+                        return result;
+                    }
                 }
 
                 // if the user entered a new password
                 if (new_pass != null && new_pass != string.Empty)
                 {
                     // update the user's stored password in the db
-                    db.db_updateFieldById(Id_, "password", new_pass);
-                }
-
-                // if the user (hairdresser) entered a new list of available days
-                if(avail_days_ != null && avail_days_ != string.Empty)
-                {
-                    // update the user's stored list of available days in the db
-                    db.db_updateFieldById(Id_, "avail_days", avail_days_);
+                    db.db_updateAcctById(user.Id, "password", new_pass);
                 }
 
                 // make a success message
-                result = "Your account has been successfully updated!";
+                result = "Success";
             }
 
             // return the message
             return result;
         }
 
-        public string ResetPassword(BsonObjectId Id_, string password_, string new_pass)
+        public string ResetPassword(string token, string password_, string new_pass)
         {
             string result = string.Empty;
 
             mongodb db = new mongodb();
 
-            //Account account = new Account
-            //{
-            //    firstName = "Tim",
-            //    lastName = "Dinh",
-            //    role = "owner",
-            //    email = "timSOB@gmail.com",
-            //    password = "admin",
-            //    avail_days = "mon,tues,wed,thurs,fri"
-            //};
-
-            
-            //// set the account array to include the above account
-            //Account[] user = new Account[1] { account }; // db.db_getAcctById(Id_);
-
             // search for an account with the given ID in the database
-            var user = db.db_getAcctById(Id_);
+            var user = db.db_getAcctByEmail(token);
 
             // if a matching account is found in db (count is not 0)
-            if (user.Count != 0)
+            if (user != null)
             {
                 // if the password of the stored account matches the given password
-                if (user[0].password == password_)
+                if (user.password == password_)
                 {
                     // update the user's stored password in the db
-                    db.db_updateFieldById(Id_, "password", new_pass);
+                    db.db_updateAcctById(user.Id, "password", new_pass);
 
                     // make a success message
-                    result = "Your password has been successfully updated!";
+                    result = "Success";
                 }
                 else // if the passwords don't match
                 {
@@ -276,10 +262,10 @@ namespace TestApp
             mongodb db = new mongodb();
 
             // log the user out by clearing the user's access token column in the database
-            // db.db_updateFieldById(Id_, "access_token", "");
+            // db.db_updateAcctById(Id_, "access_token", "");
 
             // make a success message
-            result = "You have been successfully logged out!";
+            result = "Success";
 
             // return the message
             return result;

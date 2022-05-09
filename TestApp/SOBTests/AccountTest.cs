@@ -27,17 +27,17 @@ namespace SOBTests
         public void CreateAccountTest()
         {
             // Arrange
-            string expectedRight = "Your account has been successfully created!";
+            string expectedRight = "Success";
             string expectedWrong = "That email is already associated with an account. Try again.";
 
             var newAcc = new Account();
 
             // Act
-            // string actualRight = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexSOBpe@gmail.com", "password123", string.Empty);
-            string actualWrong = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexisSOBpe@gmail.com", "pass123", string.Empty);
+            string actualRight = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexisSOBpe@gmail.com", "password123");
+            string actualWrong = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexisSOBpe@gmail.com", "pass123");
 
             // Assert
-            // Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedRight, actualRight);
             Assert.AreEqual(expectedWrong, actualWrong);
         }
 
@@ -45,15 +45,15 @@ namespace SOBTests
         public void LogInTest()
         {
             // Arrange
-            string expectedRight = "You have been successfully logged in!";
+            string expectedRight = "Success";
             string expectedWrong = "Login Failed. Incorrect password.";
             string expectedWrong2 = "Login Failed. No account found with this email.";
 
             Account account = new Account();
 
             // Act
-            string actualRight = account.LogIn("timSOB@gmail.com", "admin");
-            string actualWrong = account.LogIn("timSOB@gmail.com", "admi");
+            string actualRight = account.LogIn("alexisSOBpe@gmail.com", "password123");
+            string actualWrong = account.LogIn("alexisSOBpe@gmail.com", "admi");
             string actualWrong2 = account.LogIn("holyfishcakes333@ku.com", "cake");
 
             // Assert
@@ -66,16 +66,16 @@ namespace SOBTests
         public void EditAccountTest()
         {
             // Arrange
-            string expectedRight = "Your account has been successfully updated!";
+            string expectedRight = "Success";
             string expectedWrong = "Account update failed due to incorrect password. Try again.";
 
             mongodb db = new mongodb();
 
-            var owner = db.db_getAcctByEmail("timSOB@gmail.com");
+            var owner = db.db_getAcctByEmail("alexisSOBpe@gmail.com");
 
             // Act
-            string actualRight = owner[0].EditAccount(owner[0].Id, null, null, null, null, null, "admin");
-            string actualWrong = owner[0].EditAccount(owner[0].Id, null, null, null, null, null, "admi");
+            string actualRight = owner.EditAccount(owner.email, null, null, null, null, "password123");
+            string actualWrong = owner.EditAccount(owner.email, null, null, null, null, "admi");
 
             // Assert
             Assert.AreEqual(expectedRight, actualRight);
@@ -86,7 +86,7 @@ namespace SOBTests
         public void ResetPasswordTest()
         {
             // Arrange
-            string expectedRight = "Your password has been successfully updated!";
+            string expectedRight = "Success";
             string expectedWrong = "Your current password is incorrect. Try again.";
 
             mongodb db = new mongodb();
@@ -94,11 +94,11 @@ namespace SOBTests
             var acc = db.db_getAcctByEmail("alexisSOBpe@gmail.com");
 
             // Act
-            //string actualRight = acc[0].ResetPassword(acc[0].Id, "pass1234", "test123");
-            string actualWrong = acc[0].ResetPassword(acc[0].Id, "admin", "testing2");
+            string actualRight = acc.ResetPassword(acc.email, "password123", "pass123");
+            string actualWrong = acc.ResetPassword(acc.email, "admin", "testing2");
 
             // Assert
-            //Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedRight, actualRight);
             Assert.AreEqual(expectedWrong, actualWrong);
         }
     }
