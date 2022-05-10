@@ -91,14 +91,40 @@ namespace SOBTests
 
             mongodb db = new mongodb();
 
-            var acc = db.db_getAcctByEmail("alexisSOBpe@gmail.com");
+            var acc = db.db_getAcctByEmail("kaitsobtest@gmail.com");
 
             // Act
-            //string actualRight = acc.ResetPassword(acc.email, "pass123", "password123");
+            string actualRight = acc.ResetPassword(acc.email, "kait123", "kpass123");
+            string actualRight2 = acc.ResetPassword(acc.email, "kpass123", "kait123");
             string actualWrong = acc.ResetPassword(acc.email, "admin", "testing2");
 
             // Assert
-            //Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedRight, actualRight2);
+            Assert.AreEqual(expectedWrong, actualWrong);
+        }
+
+        [TestMethod]
+        public void ResetMemberPasswordTest()
+        {
+            // Arrange
+            string expectedRight = "Success";
+            string expectedWrong = "Password reset failed. There is no account with that email.";
+
+            mongodb db = new mongodb();
+
+            Member member = new Member();
+
+            var acc = db.db_getAcctByEmail("justinsobtest@gmail.com");
+
+            // Act
+            string actualRight = member.ResetMemberPassword(acc.email, "jpass171");
+            string actualRight2 = member.ResetMemberPassword(acc.email, "jus123");
+            string actualWrong = member.ResetMemberPassword("noemailsob@gmail.com", "testpass");
+
+            // Assert
+            Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedRight, actualRight2);
             Assert.AreEqual(expectedWrong, actualWrong);
         }
     }

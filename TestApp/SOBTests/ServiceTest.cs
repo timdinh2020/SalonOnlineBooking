@@ -18,22 +18,22 @@ namespace SOBTests
             string expectedWrong = "Sub service addition failed. Cannot make this service a sub service of itself.";
 
             // initialize master services with -1 starting price (since they aren't an actual bookable service)
-            Service hairCutting = new Service("Hair Cutting", "Different kinds of hair cutting services!", -1, null);
+            Service hairTest = new Service("Hair Test", "Different kinds of hair cutting services!", -1, null);
 
             // initialize regular services with the correct master service (the master service must exist in the db already)
-            Service trimServ = new Service("Trim", "Clean up those dead ends!", 12.99, "Hair Cutting");
-            Service fadeServ = new Service("Fade", "Get that smooth transition!", 10.99, "Hair Cutting");
-            Service shapeServ = new Service("Shape Up", "Make your hairline look neat and crisp!", 9.99, "Hair Cutting");
+            Service testServ = new Service("Test 1", "Test description number 1.", 12.99, "Hair Test");
+            Service testServ2 = new Service("Test 2", "Test description number 2.", 10.99, "Hair Test");
+            Service testServ3 = new Service("Test 3", "Test description number 3.", 9.99, "Hair Test");
 
             // Act
 
-            // adds these three services to the hair cutting master service's sub service list
-            string actualRight = hairCutting.AddNewService(trimServ);
-            string actualRight2 = hairCutting.AddNewService(fadeServ);
-            string actualRight3 = hairCutting.AddNewService(shapeServ);
+            // adds these three services to the hair test master service's sub service list
+            string actualRight = hairTest.AddNewService(testServ);
+            string actualRight2 = hairTest.AddNewService(testServ2);
+            string actualRight3 = hairTest.AddNewService(testServ3);
 
-            // doesn't work because trim service can't be its own master service
-            string actualWrong = trimServ.AddNewService(trimServ);
+            // doesn't work because test service can't be its own master service
+            string actualWrong = testServ.AddNewService(testServ);
 
             // Assert
             Assert.AreEqual(expectedRight, actualRight);
@@ -46,16 +46,16 @@ namespace SOBTests
         public void ViewServiceDetailsTest()
         {
             // Arrange
-            string expectedTitle = "Trim";
-            string expectedDesc = "Clean up those dead ends!";
+            string expectedTitle = "Test 1";
+            string expectedDesc = "Test description number 1.";
             double expectedPrice = 12.99;
 
             mongodb db = new mongodb();
 
-            var trim = db.db_getServByTitle("Trim");
+            var test = db.db_getServByTitle("Test 1");
 
-            // returns the trim service's details in an object list
-            var serv = trim.ViewServiceDetails();
+            // returns the test service's details in an object list
+            var serv = test.ViewServiceDetails();
 
             // Act
 
@@ -81,12 +81,12 @@ namespace SOBTests
         public void ViewAvailableServicesTest()
         {
             // Arrange
-            string expectedTitle = "Trim";
-            string expectedTitle2 = "Fade";
+            string expectedTitle = "Test 1";
+            string expectedTitle2 = "Test 2";
 
             mongodb db = new mongodb();
 
-            var hair = db.db_getServByTitle("Hair Cutting");
+            var hair = db.db_getServByTitle("Hair Test");
 
             // returns all the sub services in a list (Only use this function on Master services like Hair Cutting)
             var services = hair.ViewAvailableServices();
@@ -109,26 +109,26 @@ namespace SOBTests
 
             mongodb db = new mongodb();
 
-            var shaveServ = new Service("Shave It All", "Get rid of all that pesky hair on your head!", 5.99, "Hair Cutting");
+            var testServ4 = new Service("Test 5", "Test description number 4.", 5.99, "Hair Test");
 
             // you MUST get the master/regular services like this before calling any of its service functions
-            var hair = db.db_getServByTitle("Hair Cutting");
+            var hair = db.db_getServByTitle("Hair Test");
 
             // add the created service (shave it all) to the list of sub services for its master service (hair cutting)
-            hair.AddNewService(shaveServ);
+            hair.AddNewService(testServ4);
 
-            var shave = db.db_getServByTitle("Shave It All");
+            var test4 = db.db_getServByTitle("Test 5");
 
             // Act
 
-            // changes the service name
-            string actualRight = shave.ModifyService("Bald Shave", "", 6.50, null, null);
+            // changes the service name and price
+            string actualRight = test4.ModifyService("Test 4", "", 6.50, null, null);
 
             // changes nothing
-            string actualRight2 = shave.ModifyService("Bald Shave", "", 6.50, null, null); 
+            string actualRight2 = test4.ModifyService("Test 4", "", 6.50, null, null); 
 
             // doesn't work since Hair Loss isn't an existing master service
-            string actualWrong = shave.ModifyService("Bald Shave", "", 6.50, "Hair Loss", null);
+            string actualWrong = test4.ModifyService("Test 4", "", 6.50, "Hair Loss", null);
 
             // Assert
             Assert.AreEqual(expectedRight, actualRight);
@@ -146,22 +146,22 @@ namespace SOBTests
             mongodb db = new mongodb();
 
             // you MUST get the master/regular services like this before calling any of its service functions
-            var hair = db.db_getServByTitle("Hair Cutting");
+            var hair = db.db_getServByTitle("Hair Test");
 
             // Act
 
-            // removes the fade service, (false because we are removing it from the db)
-            string actualRight = hair.RemoveService("Fade", false);
+            // removes the test 2 service, (false because we are removing it from the db)
+            string actualRight = hair.RemoveService("Test 2", false);
 
-            // doesn't work because test is not a service
-            string actualWrong = hair.RemoveService("Test", false);
+            // doesn't work because test 10 is not a service
+            string actualWrong = hair.RemoveService("Test 10", false);
 
-            string actualRight2 = hair.RemoveService("Trim", false);
-            string actualRight3 = hair.RemoveService("Shape Up", false);
-            string actualRight4 = hair.RemoveService("Bald Shave", false);
+            string actualRight2 = hair.RemoveService("Test 1", false);
+            string actualRight3 = hair.RemoveService("Test 3", false);
+            string actualRight4 = hair.RemoveService("Test 4", false);
 
-            // removes the hair cutting service
-            string actualRight5 = hair.RemoveService("Hair Cutting", false);
+            // removes the hair test service
+            string actualRight5 = hair.RemoveService("Hair Test", false);
 
             // Assert
             Assert.AreEqual(expectedRight, actualRight);

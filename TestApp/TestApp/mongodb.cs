@@ -330,17 +330,131 @@ namespace TestApp
 
         // Appointments Collection *************************************************************************************************************************
         /*
+         * Function:     db_getApptsByEmail
+         * 
+         * Description:  Get all of the appointment objects that contain the given email
+         * 
+         * Parameters:   string email_: to be used to identify Appointment objects in database
+         * 
+         * Return value: List<Appointment> - returns the appointment objects found in database 
+         * 
+         */
         public List<Appointment> db_getApptsByEmail(string email_)
         {
-            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
-            var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
-            var appointments = mongodb.GetCollection<Account>("appointments");
+            // MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+            // var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
 
-            var myAppts = appointments.Find(a => a.email == email_).ToList();
+            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sobAppADMIN@salon-online-booking.fqtv2.mongodb.net/SOB?retryWrites=true&w=majority");
+            var mongodb = dbClient.GetDatabase("SOB");
+            var appointments = mongodb.GetCollection<Appointment>("appointments");
 
-            return myAppts;
+            var theAppts = appointments.Find(a => a.member.email == email_).ToList();
+
+            if(theAppts.Count <= 0)
+            {
+                theAppts = appointments.Find(a => a.hairdresser.email == email_).ToList();
+            }
+
+            return theAppts;
         }
-        */
+
+        /*
+         * 
+         * Function:     db_getApptById
+         * 
+         * Description:  Get the appointment object that matches the Id
+         * 
+         * Parameters:   BsonObjectId Id_: to be used to identify Appointment object in database
+         * 
+         * Return value: Appointment - returns the appointment object found in database 
+         * 
+         */
+        public Appointment db_getApptById(BsonObjectId Id_)
+        {
+            //MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+            //var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
+
+            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sobAppADMIN@salon-online-booking.fqtv2.mongodb.net/SOB?retryWrites=true&w=majority");
+            var mongodb = dbClient.GetDatabase("SOB");
+            var appointments = mongodb.GetCollection<Appointment>("appointments");
+
+            var theAppt = appointments.Find(a => a.Id == Id_).FirstOrDefault();
+
+            return theAppt;
+        }
+
+        /*
+         * 
+         * Function:     db_createAppt
+         * 
+         * Description:  Insert new appointment into the database
+         * 
+         * Parameters:   Appointment newAppt - contains new appointment info
+         * 
+         * Return value: None
+         * 
+         */
+        public void db_createAppt(Appointment newAppt)
+        {
+            //MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+            //var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
+
+            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sobAppADMIN@salon-online-booking.fqtv2.mongodb.net/SOB?retryWrites=true&w=majority");
+            var mongodb = dbClient.GetDatabase("SOB");
+            var appointments = mongodb.GetCollection<Appointment>("appointments");
+
+            appointments.InsertOne(newAppt);
+        }
+
+        /*
+         * 
+         * Function:     db_deleteApptById
+         * 
+         * Description:  Delete an appointment from the database
+         * 
+         * Parameters:   BsonObjectId Id_: to be used to identify Appointment object in database
+         * 
+         * Return value: None
+         * 
+         */
+        public void db_deleteApptById(BsonObjectId Id_)
+        {
+            //MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+            //var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
+
+            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sobAppADMIN@salon-online-booking.fqtv2.mongodb.net/SOB?retryWrites=true&w=majority");
+            var mongodb = dbClient.GetDatabase("SOB");
+            var appointments = mongodb.GetCollection<Appointment>("appointments");
+
+            appointments.DeleteOne(a => a.Id == Id_);
+        }
+
+        /*
+         * 
+         * Function:     db_updateApptById
+         * 
+         * Description:  Update the given field in the database for the given appointment
+         * 
+         * Parameters:   BsonObjectId Id_ - to be used to identify Appointment object in database
+         *               string field_name - the field name of the service object
+         *               T value - new value to add to the given field of the account object (value type changes depending on field type)
+         *               
+         * Return value: None
+         * 
+         */
+        public void db_updateApptById<T>(BsonObjectId Id_, string field_name, T value)
+        {
+            //MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
+            //var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
+
+            MongoClient dbClient = new MongoClient("mongodb+srv://admin:sobAppADMIN@salon-online-booking.fqtv2.mongodb.net/SOB?retryWrites=true&w=majority");
+            var mongodb = dbClient.GetDatabase("SOB");
+            var appointments = mongodb.GetCollection<Appointment>("appointments");
+
+            var filter = Builders<Appointment>.Filter.Eq("_id", Id_);
+            var update = Builders<Appointment>.Update.Set(field_name, value);
+            appointments.UpdateOne(filter, update);
+        }
 
     }
 }
