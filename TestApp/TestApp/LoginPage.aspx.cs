@@ -43,9 +43,9 @@ namespace TestApp
 
             Account userAccount = new Account();
 
-            string result = userAccount.CreateAccount(firstName, lastName, "User", userEmail, userPassword, "Monday");
+            string result = userAccount.CreateAccount(firstName, lastName, "member", userEmail, userPassword);
 
-            if (result == "Account Creation Successful!")
+            if (result == "Success")
             {
                 StatusMessage.Text = "Account successfully created.";
             }

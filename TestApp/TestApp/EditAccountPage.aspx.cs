@@ -24,7 +24,7 @@ namespace TestApp
             string currentPassword = curPassword.Value;
 
             Account userAccount = new Account();
-            string result = userAccount.EditAccount(userEmail, firstName, lastName, "", newPassword, "Monday", currentPassword);
+            string result = userAccount.EditAccount(userEmail, firstName, lastName, newPassword, currentPassword);
 
             if (result == "Your account has been successfully updated.")
             {

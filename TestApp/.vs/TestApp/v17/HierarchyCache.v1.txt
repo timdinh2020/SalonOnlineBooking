@@ -1,7 +1,52 @@
-﻿++Solution 'TestApp' ‎(1 of 1 project)
+﻿++Solution 'TestApp' ‎(2 of 2 projects)
+i:{00000000-0000-0000-0000-000000000000}:TestApp.sln
+++SOBTests
+i:{00000000-0000-0000-0000-000000000000}:SOBTests
+++Dependencies
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>427
+++AccountTest.cs
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\sobtests\accounttest.cs
+++AppointmentTest.cs
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\sobtests\appointmenttest.cs
+++HairdresserTest.cs
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\sobtests\hairdressertest.cs
+++ServiceTest.cs
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\sobtests\servicetest.cs
+++Analyzers
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:analyzers
+++Frameworks
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:frameworks
+++Packages
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:packages
+++Projects
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:projects
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++System.Text.Json.SourceGeneration
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++Microsoft.NETCore.App
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\sobtests\microsoft.netcore.app
+++coverlet.collector (3.1.0)
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>439
+++Microsoft.NET.Test.Sdk (16.11.0)
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>436
+++MongoDB.Bson (2.15.0)
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>442
+++MongoDB.Driver (2.15.0)
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>438
+++MSTest.TestAdapter (2.2.7)
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>441
+++MSTest.TestFramework (2.2.7)
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>435
+++OpenCover (4.7.1221)
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>440
+++ReportGenerator (5.1.4)
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>437
 ++TestApp
 i:{00000000-0000-0000-0000-000000000000}:TestApp
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\testapp\testapp.csproj
+i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\testapp\bin\testapp.dll
 ++Properties
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\properties\
 ++References
@@ -36,8 +81,8 @@ i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testa
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\areas\helppage\views\
 ++Account.cs
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\account.cs
-++EditAccountPage.html
-i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\editaccountpage.html
+++Appointment.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\appointment.cs
 ++favicon.ico
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\favicon.ico
 ++Global.asax
@@ -48,20 +93,16 @@ i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testa
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\libmongocrypt.dylib
 ++libmongocrypt.so
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\libmongocrypt.so
-++LoginPage.aspx
-i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\loginpage.aspx
-++LoginPage.html
-i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\loginpage.html
 ++Member.cs
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\member.cs
 ++mongocrypt.dll
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\mongocrypt.dll
 ++mongodb.cs
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\mongodb.cs
-++Owner.cs
-i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\owner.cs
 ++packages.config
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\packages.config
+++Service.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\service.cs
 ++Startup.cs
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\startup.cs
 ++Web.config
@@ -336,10 +377,6 @@ i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testa
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\areas\helppage\views\_viewstart.cshtml
 ++Global.asax.cs
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\global.asax.cs
-++LoginPage.aspx.cs
-i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\loginpage.aspx.cs
-++LoginPage.aspx.designer.cs
-i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\loginpage.aspx.designer.cs
 ++Web.Debug.config
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\web.debug.config
 ++Web.Release.config
@@ -531,44 +568,79 @@ i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testa
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\core\compression\zstandard\lib\osx\libzstd.dylib
 ++libzstd.dll
 i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\core\compression\zstandard\lib\win\libzstd.dll
-++Service.cs
-i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\service.cs
-++Solution 'TestApp' ‎(2 of 2 projects)
-i:{00000000-0000-0000-0000-000000000000}:TestApp.sln
-++SOBTests
-i:{00000000-0000-0000-0000-000000000000}:SOBTests
-++Dependencies
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>10
-++UnitTest1.cs
-++Analyzers
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:analyzers
-++C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk\targets\..\analyzers\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll
-++C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk\targets\..\analyzers\Microsoft.CodeAnalysis.NetAnalyzers.dll
-++Frameworks
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:frameworks
-++Microsoft.NETCore.App
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\sobtests\microsoft.netcore.app
-++Packages
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:packages
-++coverlet.collector (3.1.0)
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>19
-++Microsoft.NET.Test.Sdk (16.11.0)
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>18
-++MSTest.TestAdapter (2.2.7)
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>20
-++MSTest.TestFramework (2.2.7)
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>17
-++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-++Microsoft.CodeAnalysis.NetAnalyzers
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-++System.Text.Json.SourceGeneration
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
-++AccountTest.cs
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:d:\git\salononlinebooking\testapp\sobtests\accounttest.cs
-++Projects
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:projects
-++MongoDB.Bson (2.15.0)
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>76
-++MongoDB.Driver (2.15.0)
-i:{5daebfa7-23b5-41ff-9884-2a3c8bb2c8c5}:>409
+++TestApp (unloaded)
+++Solution 'TestApp' ‎(1 of 2 projects)
+++AddHairdresser.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\addhairdresser.aspx
+++AddHairdresser.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\addhairdresser.aspx.cs
+++AddHairdresser.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\addhairdresser.aspx.designer.cs
+++AddService.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\addservice.aspx
+++AddService.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\addservice.aspx.cs
+++AddService.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\addservice.aspx.designer.cs
+++EditAccountPage.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\editaccountpage.aspx
+++EditAccountPage.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\editaccountpage.aspx.cs
+++EditAccountPage.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\editaccountpage.aspx.designer.cs
+++EditAccountPage.html
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\editaccountpage.html
+++Hairdressers.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\hairdressers.aspx
+++Hairdressers.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\hairdressers.aspx.cs
+++Hairdressers.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\hairdressers.aspx.designer.cs
+++HomePage.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\homepage.aspx
+++HomePage.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\homepage.aspx.cs
+++HomePage.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\homepage.aspx.designer.cs
+++LoginPage.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\loginpage.aspx
+++LoginPage.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\loginpage.aspx.cs
+++LoginPage.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\loginpage.aspx.designer.cs
+++MakeAppointment.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\makeappointment.aspx
+++MakeAppointment.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\makeappointment.aspx.cs
+++MakeAppointment.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\makeappointment.aspx.designer.cs
+++modifyAvailability.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\modifyavailability.aspx
+++modifyAvailability.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\modifyavailability.aspx.cs
+++modifyAvailability.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\modifyavailability.aspx.designer.cs
+++ModifyService.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\modifyservice.aspx
+++ModifyService.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\modifyservice.aspx.cs
+++ModifyService.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\modifyservice.aspx.designer.cs
+++ServiceDescription.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\servicedescription.aspx
+++ServiceDescription.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\servicedescription.aspx.cs
+++ServiceDescription.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\servicedescription.aspx.designer.cs
+++ServiceList.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\servicelist.aspx
+++ServiceList.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\servicelist.aspx.cs
+++ServiceList.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\servicelist.aspx.designer.cs
+++ViewAppointments.aspx
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\viewappointments.aspx
+++ViewAppointments.aspx.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\viewappointments.aspx.cs
+++ViewAppointments.aspx.designer.cs
+i:{b5b88e58-06d9-4404-af71-559b8ef0669a}:d:\git\salononlinebooking\testapp\testapp\viewappointments.aspx.designer.cs

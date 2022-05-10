@@ -29,6 +29,18 @@ namespace TestApp
 
             mongodb db = new mongodb();
 
+            //// initialize master services with -1 starting price (since they aren't an actual bookable service)
+            //Service hairCutting = new Service("Hair Cutting", "Different kinds of hair cutting services!", -1, null);
+
+            //// initialize regular services with the correct master service (the master service must exist in the db already)
+            //Service cutServ = new Service("Haircut", "Quality haircuts for everyone.", 19.99, "Hair Cutting");
+            //Service bTrimServ = new Service("Beard Trim", "Quick touch-up to keep your beard looking sharp.", 11.99, "Hair Cutting");
+            //Service shapeServ = new Service("Shape Up", "Test description number 3.", 10.50, "Hair Cutting");
+
+            //hairCutting.AddNewService(cutServ);
+            //hairCutting.AddNewService(bTrimServ);
+            //hairCutting.AddNewService(shapeServ);
+
             //Appointment appointment = new Appointment();
 
             //var mary = db.db_getAcctByEmail("marysobtest@gmail.com");

@@ -33,11 +33,11 @@ namespace SOBTests
             var newAcc = new Account();
 
             // Act
-            //string actualRight = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexisSOBpe@gmail.com", "password123");
-            string actualWrong = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexisSOBpe@gmail.com", "pass123");
+            string actualRight = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexisSOBpe@gmail.com", "pass123");
+            string actualWrong = newAcc.CreateAccount("Alexis", "Peoples", "member", "alexisSOBpe@gmail.com", "password123");
 
             // Assert
-            //Assert.AreEqual(expectedRight, actualRight);
+            Assert.AreEqual(expectedRight, actualRight);
             Assert.AreEqual(expectedWrong, actualWrong);
         }
 
@@ -74,8 +74,8 @@ namespace SOBTests
             var owner = db.db_getAcctByEmail("alexisSOBpe@gmail.com");
 
             // Act
-            string actualRight = owner.EditAccount(owner.email, null, null, null, null, "pass123");
-            string actualWrong = owner.EditAccount(owner.email, null, null, null, null, "admi");
+            string actualRight = owner.EditAccount(owner.email, null, "Johnson", null, "pass123");
+            string actualWrong = owner.EditAccount(owner.email, null, null, null, "admi");
 
             // Assert
             Assert.AreEqual(expectedRight, actualRight);

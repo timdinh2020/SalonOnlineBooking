@@ -126,14 +126,14 @@ namespace TestApp
             return result;
         }
 
-        public string EditAccount(string token, string firstName_, string lastName_, string email_, string new_pass, string password_)
+        public string EditAccount(string email_, string firstName_, string lastName_, string new_pass, string password_)
         {
             string result = string.Empty;
             
             mongodb db = new mongodb();
 
-            // if an account ID was not entered
-            if(token == null)
+            // if an account email was not entered
+            if(email_ == null)
             {
                 // make a failure message and return it immediately
                 result = "No account found to update. Try again.";
@@ -153,8 +153,8 @@ namespace TestApp
             //// set the account array to include the above account
             //Account[] user = new Account[1] {account};
 
-            // search for an account with the given ID in the database
-            var user = db.db_getAcctByEmail(token);
+            // search for an account with the given email in the database
+            var user = db.db_getAcctByEmail(email_);
 
             // if a matching account is not found in db (count is 0)
             if (user == null)
@@ -186,23 +186,6 @@ namespace TestApp
                     db.db_updateAcctById(user.Id, "last_name", lastName_);
                 }
 
-                // if the user entered a new email
-                if (email_ != null && email_ != string.Empty)
-                {
-                    var existingUser = db.db_getAcctByEmail(email_);
-
-                    if (existingUser == null)
-                    {
-                        // update the user's stored email in the db
-                        db.db_updateAcctById(user.Id, "email", email_);
-                    }
-                    else
-                    {
-                        result = "That email is already associated with an account. Try again.";
-                        return result;
-                    }
-                }
-
                 // if the user entered a new password
                 if (new_pass != null && new_pass != string.Empty)
                 {
@@ -218,14 +201,14 @@ namespace TestApp
             return result;
         }
 
-        public string ResetPassword(string token, string password_, string new_pass)
+        public string ResetPassword(string email_, string password_, string new_pass)
         {
             string result = string.Empty;
 
             mongodb db = new mongodb();
 
             // search for an account with the given ID in the database
-            var user = db.db_getAcctByEmail(token);
+            var user = db.db_getAcctByEmail(email_);
 
             // if a matching account is found in db (count is not 0)
             if (user != null)
@@ -250,22 +233,6 @@ namespace TestApp
                 // make a failure message
                 result = "Password reset failed. No account found.";
             }
-
-            // return the message
-            return result;
-        }
-
-        public string LogOut(BsonObjectId Id_)
-        {
-            string result = string.Empty;
-
-            mongodb db = new mongodb();
-
-            // log the user out by clearing the user's access token column in the database
-            // db.db_updateAcctById(Id_, "access_token", "");
-
-            // make a success message
-            result = "Success";
 
             // return the message
             return result;
