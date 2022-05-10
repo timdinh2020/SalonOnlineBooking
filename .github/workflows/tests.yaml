@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Tests
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the Sprint-1 branch
+  push:
+    branches: [ Alexis-Backend ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  unit-tests:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Sets up .NET for github
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+      
+      # Restores the dependencies for the project
+      #- name: Restore dependencies
+      #  run: |
+      #    dotnet restore TestApp/TestApp/TestApp.csproj
+      #    dotnet restore TestApp/SOBTests/SOBTests.csproj
+        
+      # Builds the project
+      #- name: Build project
+      #  run: dotnet build TestApp/TestApp.sln --no-restore
+        
+      - name: Setup VSTest.exe
+        uses: Malcolmnixon/Setup-VSTest@v4
+
+      # Runs a set of commands using the runners shell
+      - name: Run VSTest
+        run: vstest.console ./TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll
+        
+      - name: Run OpenCover
+        run: TestApp/packages/OpenCover.4.7.1221/tools/OpenCover.Console.exe -target:vstest.console.exe -targetargs:TestApp/SOBTests/bin/Debug/net6.0/SOBTests.dll -output:TestApp/TestCov/CoverageResults.xml -register:user
+
+      - name: Run ReportGen
+        run: TestApp/packages/ReportGenerator.5.1.4/tools/net6.0/ReportGenerator.exe -reports:TestApp/TestCov/CoverageResults.xml -targetdir:TestApp/TestCov/CoverageResults

@@ -14,10 +14,10 @@ namespace TestApp
         public BsonObjectId Id { get; set; }
 
         [BsonElement("first_name")]
-        public string first_name { get; set; }
+        public string firstName { get; set; }
 
         [BsonElement("last_name")]
-        public string last_name { get; set; }
+        public string lastName { get; set; }
 
         [BsonElement("role")]
         public string role { get; set; }
@@ -25,190 +25,216 @@ namespace TestApp
         [BsonElement("email")]
         public string email { get; set; }
 
-        [BsonElement("username")]
-        public string username { get; set; }
-
         [BsonElement("password")]
         public string password { get; set; }
 
         [BsonElement("avail_days")]
-        public string avail_days { get; set; }
+        public List<string> avail_days { get; set; }
 
-        [BsonElement("avail_times")]
-        public string avail_times { get; set; }
-
-        /* deprecated
-        public void GetAccount()
+        public string LogIn(string email_, string password_)
         {
-            MongoClient dbClient = new MongoClient("mongodb+srv://admin:<sob123>@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
-            var dbList = dbClient.ListDatabases().ToList();
-            var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
-            var accounts = mongodb.GetCollection<BsonDocument>("accounts");
-        }
-        */
-
-        public string LogIn(string username, string password)
-        {
-
             string result = string.Empty;
 
-            if (username == null || password == null)
+            // if the user didn't enter an email or a password
+            if (email_ == null || password_ == null || email_ == string.Empty || password_ == string.Empty)
             {
-                result = "Both username and password are required inputs. Try again.";
+                // don't try to log them in, inform the user that both must be entered to continue
+                result = "Both email and password are required inputs. Try again.";
             }
-            else
-            {
-                // compare given username to usernames in database
-                // if username is found in db, compare the given and stored passwords, else print no user error
-                // if passwords match, log the user in (create access token and store in db?), else print invalid credentials
-                MongoClient dbClient = new MongoClient("mongodb+srv://admin:sob123@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
-                var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
-                var accounts = mongodb.GetCollection<Account>("accounts");
+            else // if the user did enter an email and password
+            {   
+                // create a new mongo object
+                mongodb db = new mongodb();
 
-                var myAccount = accounts.Find(a => a.email == username).ToList();
-                if (myAccount != null)
+                // search for an account with the given email in the database
+                var user = db.db_getAcctByEmail(email_);
+
+                // if a matching account is found in db (count is not 0)
+                if (user != null)
                 {
-                    if (myAccount[0].password == password)
+                    // if the password of the stored account matches the given password
+                    if (user.password == password_)
                     {
+                        // log the user in (update their access token field in the db to a valid token)
+
+                        // make a success message
                         result = "Success";
                     }
-                    else
+                    else // if the passwords don't match
                     {
-                        result = "Failed. Wrong password.";
+                        // don't log the user in, make a failure message
+                        result = "Login Failed. Incorrect password.";
                     }
                 }
-                else
+                else // if a matching account is not found in the database
                 {
-                    result = "Failed. No account found with this username.";
+                    // don't log the user in, make a failure message
+                    result = "Login Failed. No account found with this email.";
                 }
             }
 
+            // return the message
             return result;
         }
 
-        public string CreateAccount(string firstName_, string lastName_, string role_, string email_, string username_, string password_, string avail_days_)
+        public string CreateAccount(string firstName_, string lastName_, string role_, string email_, string password_)
         {
             string result = string.Empty;
-            bool emailFound = true; // debug
-            bool userFound = true; // debug
 
-            MongoClient dbClient = new MongoClient("mongodb+srv://admin:<sob123>@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
-            var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
-            var accounts = mongodb.GetCollection<Account>("accounts");
+            mongodb db = new mongodb();
 
-            if (firstName_ == null || lastName_ == null || email_ == null || username_ == null || password_ == null)
+            // if the user didn't enter a value for one of the fields
+            if (firstName_ == null || lastName_ == null || email_ == null || password_ == null ||
+                firstName_ == string.Empty || lastName_ == string.Empty || email_ == string.Empty || 
+                password_ == string.Empty)
             {
+                // make a failure message and return it immediately
                 result = "All fields are required. Try again.";
                 return result;
             }
 
-            // check if the given email and username are both unique (not already in the db)
-            // if the email or username is in the db, return an error (don't store their info in the db)
-            var testEmail = accounts.Find(a => a.email == email_).ToList();
-            if ( (testEmail != null) && (!testEmail.Any()) )
-            { } else { emailFound = false; }
+            // search for an account with the given email in the database
+            var user = db.db_getAcctByEmail(email_);
 
-            var testUsername = accounts.Find(a => a.username == username_).ToList();
-            if ( (testUsername != null) && (!testUsername.Any()) )
-            { } else { userFound = false; }
-
-            if (emailFound && userFound)
+            // if a matching account is found in db (count is not 0)
+            if(user != null)
             {
-                result = "That email and username is already associated with an account.";
+                // don't create the new account, make a failure message
+                result = "That email is already associated with an account. Try again.";
             }
-            else if (emailFound)
+            else // if a matching account is not found in the database
             {
-                result = "That email is already associated with an account.";
-            }
-            else if (userFound)
-            {
-                result = "That username is already associated with an account.";
-            }
-            else
-            {
-                // if the email and username are both unique, store all their info in the db
-                result = "Account Creation Successful!";
+                // create a new account object using the given information
                 var newAccount = new Account
                 {
-                    first_name = firstName_,
-                    last_name = lastName_,
+                    firstName = firstName_,
+                    lastName = lastName_,
                     role = role_,
                     email = email_,
-                    username = username_,
                     password = password_,
-                    avail_days = avail_days_,
+                    avail_days = null
                 };
-                accounts.InsertOne(newAccount);
+
+                // add the new account to the database
+                db.db_createAcct(newAccount);
+
+                // make a success message
+                result = "Success";
             }
 
+            // return the message
             return result;
         }
 
-        // This function updates the new value for selected field in database
-        public void updateDB_field(BsonObjectId Id_, string field_name, string value)
-        {
-            MongoClient dbClient = new MongoClient("mongodb+srv://admin:<sob123>@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
-            var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
-            var accounts = mongodb.GetCollection<Account>("accounts");
-
-            var filter = Builders<Account>.Filter.Eq("_id", Id_);
-            var update = Builders<Account>.Update.Set(field_name, value);
-            accounts.UpdateOne(filter, update);
-        }
-
-        public string EditAccount(BsonObjectId Id_, string firstName_, string lastName_, string email_, string username_, string password_, string avail_days_)
+        public string EditAccount(string email_, string firstName_, string lastName_, string new_pass, string password_)
         {
             string result = string.Empty;
+            
+            mongodb db = new mongodb();
 
-            updateDB_field(Id_, "first_name", firstName_);
-            updateDB_field(Id_, "last_name", lastName_);
-            updateDB_field(Id_, "email", email_);
-            updateDB_field(Id_, "username", username_);
-            updateDB_field(Id_, "password", password_);
-            updateDB_field(Id_, "avail_days", avail_days_);
-            result = "Success";
-
-            return result;
-        }
-
-        public string ResetPassword(string username_, string password_)
-        {
-            string result = string.Empty;
-
-            MongoClient dbClient = new MongoClient("mongodb+srv://admin:<sob123>@cluster1.8dqvn.mongodb.net/Salon_Online_Booking?retryWrites=true&w=majority");
-            var mongodb = dbClient.GetDatabase("Salon_Online_Booking");
-            var accounts = mongodb.GetCollection<Account>("accounts");
-
-            var myAccount = accounts.Find(a => a.username == username_).ToList();
-            if (myAccount != null)
+            // if an account email was not entered
+            if(email_ == null)
             {
-                if (myAccount[0].password == password_)
+                // make a failure message and return it immediately
+                result = "No account found to update. Try again.";
+                return result;
+            }
+
+            // used for testing
+            //Account account = new Account {
+            //    firstName = "Tim",
+            //        lastName = "Dinh",
+            //        role = "owner",
+            //        email = "timSOB@gmail.com",
+            //        password = "admin",
+            //        avail_days = "mon,tues,wed,thurs,fri"
+            //};
+
+            //// set the account array to include the above account
+            //Account[] user = new Account[1] {account};
+
+            // search for an account with the given email in the database
+            var user = db.db_getAcctByEmail(email_);
+
+            // if a matching account is not found in db (count is 0)
+            if (user == null)
+            {
+                // make a failure message and return it immediately
+                result = "That account doesn't exist. Try again.";
+                return result;
+            }
+
+            // if the password of the stored account doesn't match the given password
+            if (user.password != password_)
+            {
+                // don't update the user's account, make a failure message
+                result = "Account update failed due to incorrect password. Try again.";
+            }
+            else // if the passwords do match
+            {
+                // if the user entered a new first name
+                if (firstName_ != null && firstName_ != string.Empty)
                 {
-                    var filter = Builders<Account>.Filter.Eq("username", username_);
-                    var update = Builders<Account>.Update.Set("password", "temp123");
-                    accounts.UpdateOne(filter, update);
+                    // update the user's stored first name in the db
+                    db.db_updateAcctById(user.Id, "first_name", firstName_);
+                }
+
+                // if the user entered a new last name
+                if (lastName_ != null && lastName_ != string.Empty)
+                {
+                    // update the user's stored last name in the db
+                    db.db_updateAcctById(user.Id, "last_name", lastName_);
+                }
+
+                // if the user entered a new password
+                if (new_pass != null && new_pass != string.Empty)
+                {
+                    // update the user's stored password in the db
+                    db.db_updateAcctById(user.Id, "password", new_pass);
+                }
+
+                // make a success message
+                result = "Success";
+            }
+
+            // return the message
+            return result;
+        }
+
+        public string ResetPassword(string email_, string password_, string new_pass)
+        {
+            string result = string.Empty;
+
+            mongodb db = new mongodb();
+
+            // search for an account with the given ID in the database
+            var user = db.db_getAcctByEmail(email_);
+
+            // if a matching account is found in db (count is not 0)
+            if (user != null)
+            {
+                // if the password of the stored account matches the given password
+                if (user.password == password_)
+                {
+                    // update the user's stored password in the db
+                    db.db_updateAcctById(user.Id, "password", new_pass);
+
+                    // make a success message
                     result = "Success";
                 }
-                else
+                else // if the passwords don't match
                 {
-                    result = "Failed. Wrong password.";
+                    // make a failure message
+                    result = "Your current password is incorrect. Try again.";
                 }
             }
-            else
+            else // if a matching account is not found in the database
             {
-                result = "Failed. No account found with this username.";
+                // make a failure message
+                result = "Password reset failed. No account found.";
             }
 
-            return result;
-        }
-
-        public string LogOut()
-        {
-            string result = string.Empty;
-
-            // log the user out (delete the user's access token from the db?)
-            result = "You have successfully logged out!";
-
+            // return the message
             return result;
         }
     }

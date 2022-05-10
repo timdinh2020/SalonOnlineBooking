@@ -1,0 +1,115 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Git\\SalonOnlineBooking\\TestApp\\SOBTests\\SOBTests.csproj": {}
+  },
+  "projects": {
+    "D:\\Git\\SalonOnlineBooking\\TestApp\\SOBTests\\SOBTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Git\\SalonOnlineBooking\\TestApp\\SOBTests\\SOBTests.csproj",
+        "projectName": "SOBTests",
+        "projectPath": "D:\\Git\\SalonOnlineBooking\\TestApp\\SOBTests\\SOBTests.csproj",
+        "packagesPath": "C:\\Users\\alexi\\.nuget\\packages\\",
+        "outputPath": "D:\\Git\\SalonOnlineBooking\\TestApp\\SOBTests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\alexi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Git\\SalonOnlineBooking\\TestApp\\TestApp\\TestApp.csproj": {
+                "projectPath": "D:\\Git\\SalonOnlineBooking\\TestApp\\TestApp\\TestApp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.11.0, )"
+            },
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[2.15.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.15.0, )"
+            },
+            "OpenCover": {
+              "target": "Package",
+              "version": "[4.7.1221, )"
+            },
+            "ReportGenerator": {
+              "target": "Package",
+              "version": "[5.1.4, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Git\\SalonOnlineBooking\\TestApp\\TestApp\\TestApp.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Git\\SalonOnlineBooking\\TestApp\\TestApp\\TestApp.csproj",
+        "projectName": "TestApp",
+        "projectPath": "D:\\Git\\SalonOnlineBooking\\TestApp\\TestApp\\TestApp.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    }
+  }
+}
