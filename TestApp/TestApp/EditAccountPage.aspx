@@ -17,28 +17,34 @@
 
 
     <div class="container">
+
+        <asp:Label ID="Label1" runat="server" Text="&emsp;Only fill out fields that need to be updated."></asp:Label>
+
+        <br />
+        <br />
+
         <div class="col-11">
             <div class="input-group mb-3">
-                <span class="input-group-text col-1" id="basic-addon1">First Name</span>
+                <span class="input-group-text col-2" id="basic-addon1">First Name</span>
                 <input type="text" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1" id = "fName" runat ="server">
             </div>
         </div>
         <div class="col-11">
             <div class="input-group mb-3">
-                <span class="input-group-text col-1" id="basic-addon1">Last Name</span>
+                <span class="input-group-text col-2" id="basic-addon1">Last Name</span>
                 <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1" id ="lName" runat ="server">
             </div>
         </div>
         <div class="col-11">
             <div class="input-group mb-3">
-                <span class="input-group-text col-1" id="basic-addon1">Email</span>
-                <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" id ="email" runat ="server">
+                <span class="input-group-text col-2" id="basic-addon1">New Password</span>
+                <input type="password" class="form-control" placeholder="New Password" aria-label="Username" aria-describedby="basic-addon1" id ="password" runat ="server">
             </div>
         </div>
         <div class="col-11">
             <div class="input-group mb-3">
-                <span class="input-group-text col-1" id="basic-addon1">Password</span>
-                <input type="password" class="form-control" placeholder="password" aria-label="Username" aria-describedby="basic-addon1" id ="password" runat ="server">
+                <span class="input-group-text col-2" id="basic-addon1">Current Password</span>
+                <input type="password" class="form-control" placeholder="Current Password" aria-label="Username" aria-describedby="basic-addon1" id ="curPassword" runat ="server">
             </div>
         </div>
         <br />

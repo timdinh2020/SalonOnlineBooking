@@ -14,11 +14,19 @@
     <form id="form1" style ="text-align:center;" runat="server">
         <div>
             <h1 style="text-align: center;">Welcome to the Home Page!</h1>
-            <br><br>
+            <br/><br/>
 
             <asp:Button runat="server" onclick="editAccountClick" id ="editAccountBtn" class="btn btn-primary" Text="Edit Account"/>
             <asp:Button runat="server" onclick="servicesClick" id ="servicesBtn" class="btn btn-primary" Text="Services"/>
             <asp:Button runat="server" onclick="signOutClick" id ="signOutBtn" class="btn btn-primary" Text="Sign Out"/>
+            <asp:Button runat="server" onclick="addServiceClick" id ="addServicesBtn" class="btn btn-primary" Text="Add Service"/>
+            <br />
+            <br />
+            <asp:Button runat="server" onclick="modifyServiceClick" id ="modifyServicesBtn" class="btn btn-primary" Text="Modify Service"/>
+            <asp:Button runat="server" onclick="viewHairDressersClick" id ="viewHairDressersBtn" class="btn btn-primary" Text="View Hairdressers"/>
+            <asp:Button runat="server" onclick="modifyAvailability" id ="modifyAvailabilityBtn" class="btn btn-primary" Text="Modify Availability"/>
+            <asp:Button runat="server" onclick="addHairdresserClick" id ="addHairDressersBtn" class="btn btn-primary" Text="Add Hairdresser"/>
+
 
         </div>
     </form>

@@ -11,7 +11,7 @@ namespace TestApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string userEmail = Session["userEmail"] as string;
         }
         protected void editAccountClick(object sender, EventArgs e)
         {
@@ -19,12 +19,38 @@ namespace TestApp
         }
         protected void signOutClick(object sender, EventArgs e)
         {
+            Session["userEmail"] = "";
             Page.Response.Redirect("~/LoginPage.aspx", true);
         }
 
         protected void servicesClick(object sender, EventArgs e)
         {
+            Page.Response.Redirect("~/ServiceList.aspx", true);
+        }
 
+        protected void addServiceClick(object sender, EventArgs e)
+        {
+            Page.Response.Redirect("~/AddService.aspx", true);
+        }
+
+        protected void modifyServiceClick(object sender, EventArgs e)
+        {
+            Page.Response.Redirect("~/ModifyService.aspx", true);
+        }
+
+        protected void viewHairDressersClick(object sender, EventArgs e)
+        {
+            Page.Response.Redirect("~/Hairdressers.aspx", true);
+        }
+
+        protected void modifyAvailability(object sender, EventArgs e)
+        {
+            Page.Response.Redirect("~/modifyAvailability.aspx", true);
+        }
+
+        protected void addHairdresserClick(object sender, EventArgs e)
+        {
+            Page.Response.Redirect("~/AddHairdresser.aspx", true);
         }
     }
 }

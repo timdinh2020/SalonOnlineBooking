@@ -23,6 +23,7 @@ namespace TestApp
 
             if (result == "Success")
             {
+                Session["userEmail"] = username;
                 Page.Response.Redirect("~/HomePage.aspx", true);
             }
             else
@@ -42,7 +43,7 @@ namespace TestApp
 
             Account userAccount = new Account();
 
-            string result = userAccount.CreateAccount(firstName, lastName, "User", userEmail, "", userPassword, "Monday");
+            string result = userAccount.CreateAccount(firstName, lastName, "User", userEmail, userPassword, "Monday");
 
             if (result == "Account Creation Successful!")
             {

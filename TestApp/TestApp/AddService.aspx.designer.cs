@@ -11,7 +11,7 @@ namespace TestApp
 {
 
 
-    public partial class HomePage
+    public partial class AddService
     {
 
         /// <summary>
@@ -24,75 +24,57 @@ namespace TestApp
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// editAccountBtn control.
+        /// titleTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button editAccountBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText titleTB;
 
         /// <summary>
-        /// servicesBtn control.
+        /// descrTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button servicesBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText descrTB;
 
         /// <summary>
-        /// signOutBtn control.
+        /// priceTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button signOutBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText priceTB;
 
         /// <summary>
-        /// addServicesBtn control.
+        /// addServiceBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addServicesBtn;
+        protected global::System.Web.UI.WebControls.Button addServiceBtn;
 
         /// <summary>
-        /// modifyServicesBtn control.
+        /// homePageBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button modifyServicesBtn;
+        protected global::System.Web.UI.WebControls.Button homePageBtn;
 
         /// <summary>
-        /// viewHairDressersBtn control.
+        /// StatusMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button viewHairDressersBtn;
-
-        /// <summary>
-        /// modifyAvailabilityBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button modifyAvailabilityBtn;
-
-        /// <summary>
-        /// addHairDressersBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addHairDressersBtn;
+        protected global::System.Web.UI.WebControls.Label StatusMessage;
     }
 }

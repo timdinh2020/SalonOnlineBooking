@@ -19,12 +19,12 @@ namespace TestApp
         {
             string firstName = fName.Value;
             string lastName = lName.Value;
-            string userEmail = email.Value;
-            string userPassword = password.Value;
+            string userEmail = Session["userEmail"] as string;
+            string newPassword = password.Value;
+            string currentPassword = curPassword.Value;
 
-            BsonObjectId Id_ = (BsonObjectId)"5bf142459b72e12b2b1b2cd";
             Account userAccount = new Account();
-            String result = userAccount.EditAccount(Id_, firstName, lastName, userEmail, "Username", userPassword, "Monday", userPassword);
+            string result = userAccount.EditAccount(userEmail, firstName, lastName, "", newPassword, "Monday", currentPassword);
 
             if (result == "Your account has been successfully updated.")
             {
@@ -32,7 +32,7 @@ namespace TestApp
             }
             else
             {
-                StatusMessage.Text = "Account information could not be updated.";
+                StatusMessage.Text = result;
             }
 
             

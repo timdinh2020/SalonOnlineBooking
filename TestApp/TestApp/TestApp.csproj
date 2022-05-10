@@ -265,6 +265,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AddHairdresser.aspx.cs">
+      <DependentUpon>AddHairdresser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddHairdresser.aspx.designer.cs">
+      <DependentUpon>AddHairdresser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddService.aspx.cs">
+      <DependentUpon>AddService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddService.aspx.designer.cs">
+      <DependentUpon>AddService.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -313,6 +327,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hairdressers.aspx.cs">
+      <DependentUpon>Hairdressers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Hairdressers.aspx.designer.cs">
+      <DependentUpon>Hairdressers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -327,17 +348,62 @@
     <Compile Include="LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MakeAppointment.aspx.cs">
+      <DependentUpon>MakeAppointment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MakeAppointment.aspx.designer.cs">
+      <DependentUpon>MakeAppointment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="modifyAvailability.aspx.cs">
+      <DependentUpon>modifyAvailability.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modifyAvailability.aspx.designer.cs">
+      <DependentUpon>modifyAvailability.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModifyService.aspx.cs">
+      <DependentUpon>ModifyService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModifyService.aspx.designer.cs">
+      <DependentUpon>ModifyService.aspx</DependentUpon>
+    </Compile>
     <Compile Include="mongodb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="ServiceDescription.aspx.cs">
+      <DependentUpon>ServiceDescription.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServiceDescription.aspx.designer.cs">
+      <DependentUpon>ServiceDescription.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceList.aspx.cs">
+      <DependentUpon>ServiceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServiceList.aspx.designer.cs">
+      <DependentUpon>ServiceList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewAppointments.aspx.cs">
+      <DependentUpon>ViewAppointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewAppointments.aspx.designer.cs">
+      <DependentUpon>ViewAppointments.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddHairdresser.aspx" />
+    <Content Include="AddService.aspx" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -353,8 +419,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="EditAccountPage.html" />
+    <Content Include="Hairdressers.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="LoginPage.aspx" />
+    <Content Include="MakeAppointment.aspx" />
+    <Content Include="modifyAvailability.aspx" />
+    <Content Include="ModifyService.aspx" />
     <Content Include="mongocrypt.dll" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\app\app.datamodel.js" />
@@ -400,6 +470,9 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\sammy-0.7.5.js" />
     <Content Include="Scripts\sammy-0.7.5.min.js" />
+    <Content Include="ServiceDescription.aspx" />
+    <Content Include="ServiceList.aspx" />
+    <Content Include="ViewAppointments.aspx" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
